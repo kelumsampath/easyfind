@@ -1,0 +1,35 @@
+<div class="container">
+<form class="form" (submit)="registerData()">
+    <fieldset>
+      <legend>Register</legend>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Full Name</label>
+            <input type="text" class="form-control" id="inputfullname" placeholder="Your username" name="fullname" [(ngModel)]="fullname">
+          </div>
+
+          <div class="form-group">
+              <label for="exampleInputPassword1">User name</label>
+              <input type="text" class="form-control" id="inputname" placeholder="Your Name" name="username" [(ngModel)]="username" >
+            </div>
+
+          <div class="form-group">
+              <label for="exampleInputPassword1">Email</label>
+              <input type="text" class="form-control" id="inputemail" placeholder="Your email" name="email" [(ngModel)]="email">
+            </div>
+
+          <div class="form-group">
+              <label for="exampleInputPassword1">Phone No</label>
+              <input type="number" class="form-control" id="inputphoneno" placeholder="Your phone number" name="phoneno" [(ngModel)]="phoneno">
+            </div>
+
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" id="inputpassword" placeholder="Your password" name="password" [(ngModel)]="password">
+          </div>
+
+        
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </fieldset>
+  </form>
+</div>
