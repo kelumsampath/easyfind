@@ -30,12 +30,13 @@ router.post('/register',(req,res)=>{
     if(err){
       
         if (err.name === 'MongoError' && err.code === 11000) {
-            console.log('There was a duplicate key error');
-        } 
-    
-      res.json({state:false,msg:"data not inserted!"})
+           // console.log('There was a duplicate key error');
+           res.json({state:false,msg:"Your username already used!"}) 
+        }else{
+           res.json({state:false,msg:"Something Went wrong!"})
+        }
     }else{
-      res.json({state:true,msg:"data inserted!"})
+      res.json({state:true,msg:"You have been successfully registered!"})
     }
   })
 });

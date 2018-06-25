@@ -35,11 +35,11 @@ registerData(){
   }
   this.authservice.registerUser(user).subscribe(res=>{
     if(res.state){
-    this.ngFlashMessageService.showFlashMessage({messages: ["You are registered!"],dismissible: true,timeout: 4000,type: 'success'});
+    this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: true,timeout: 4000,type: 'success'});
     this.router.navigate(['/login']);}
     else{
-    console.log(res.msg);
-    this.ngFlashMessageService.showFlashMessage({messages: ["Something went wrong!"],dismissible: false,timeout: 4000,type: 'danger'});
+    //console.log(res.msg);
+    this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: false,timeout: 4000,type: 'danger'});
     this.router.navigate(['/register']);
     }
   });
