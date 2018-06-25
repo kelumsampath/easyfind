@@ -13,8 +13,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { Router } from '@angular/router/src/router';
 import { AuthService } from './service/auth.service';
 import { AuthGuard } from './service/auth.guard';
+import { RootComponent } from './root/root.component';
 
 const applicationRoutes:Routes = [
+  {path:'',component:RootComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'profile',component:ProfileComponent, canActivate: [AuthGuard]},
@@ -26,7 +28,8 @@ const applicationRoutes:Routes = [
     NavbarComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    RootComponent
   ],
   imports: [
     BrowserModule,
