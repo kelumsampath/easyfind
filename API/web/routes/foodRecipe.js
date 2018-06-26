@@ -7,11 +7,7 @@ router.get('/',(req,res)=>{
     res.send("Hello foodrecipe!");
   });
 
-  cloudinary.config({ 
-    cloud_name: 'defah2zln', 
-    api_key: '227588295695171', 
-    api_secret: 'H3qw5KLfuUeLAi6dYvhqXFKu3I8' 
-  });
+ 
   router.get('/a',(req,res)=>{
   cloudinary.uploader.upload("http://weknowyourdreams.com/images/nature/nature-12.jpg",function(result) { 
     res.send(result);
