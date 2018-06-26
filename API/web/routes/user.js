@@ -12,9 +12,11 @@ const datamodelds = require('../../datamodels/user');
 const tokenmodels = require('../../datamodels/token');
 const token = require('../../config/token');
 
+
 router.get('/',(req,res)=>{
-  res.send("Hello Tidyclean!");
+  res.send("Hello user!");
 });
+
 
 router.post('/register',(req,res)=>{
   //console.log(req.body);
