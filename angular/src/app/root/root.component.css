@@ -1,0 +1,9 @@
+#foodrecipes{
+    max-width: 50%;
+    position: relative;
+    left: 50%;
+    top: 300px;
+    transform: translateX(-50%);
+    
+
+}

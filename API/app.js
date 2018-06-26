@@ -9,7 +9,8 @@ const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3000;
-const user = require('./web/routes');
+const user = require('./web/routes/user');
+const foodRecipe = require('./web/routes/foodRecipe');
 const config = require('./config/database');
 
 http.createServer(app).listen(port,(err)=>{
@@ -38,8 +39,13 @@ app.use(cors());
 app.get('/',(req,res)=>{
   res.send("Hello App!");
 });*/
+app.get('/',(req,res)=>{
+  res.send("Hello food!!");
+});
 
-app.use('/',user);
+app.use('/user',user);
+app.use('/foodrecipe',foodRecipe);
+
 
 app.use(passport.initialize());
 app.use(passport.session());
