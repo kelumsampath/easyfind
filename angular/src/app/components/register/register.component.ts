@@ -15,6 +15,8 @@ export class RegisterComponent implements OnInit {
   email:String;
   phoneno:Number;
   password:String;
+  imageUrl:String = "../../../assets/images/defualt.jpg";
+  fileToUpload:File = null;
 
   constructor(
     private authservice:AuthService,
@@ -44,6 +46,17 @@ registerData(){
     }
   });
   
+}
+handleFileInput(file:FileList){
+  this.fileToUpload = file.item(0);
+
+  //preview image
+  var reader = new FileReader();
+  reader.onload = (event:any)=>{
+    this.imageUrl = event.target.result; 
+
+  }
+  reader.readAsDataURL(this.fileToUpload);
 }
 
 }
