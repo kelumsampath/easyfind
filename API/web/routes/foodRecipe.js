@@ -1,7 +1,15 @@
 const express = require('express');
 const cloudinary = require('cloudinary');
 const multer  = require('multer')
-const upload = multer({ dest: 'uploads/' })
+const storage = multer.diskStorage({ 
+  destination: function(req,file,callback){
+    callback(null,'./uploads/');
+  },
+  filename: function(req,file,callback){
+    callback(null,file.originalname);
+  }
+});
+const upload = multer({ storage: storage })
 
 const router = express.Router();
 
@@ -22,8 +30,8 @@ router.get('/',(req,res)=>{
 
   });
 
-  router.post('/c',upload.single('image'),(req,res)=>{
-    res.send(req.file);
+  router.post('/c',upload.single('profpic'),(req,res)=>{
+    console.log(req.file);
 
   });
 
