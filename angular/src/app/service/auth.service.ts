@@ -63,6 +63,7 @@ loggedIn(){
 testing(user){
   const formData: FormData = new FormData();
   formData.append('profpic', user.fileToUpload,user.fileToUpload.name);
+  formData.append('fullname',user.fullname);
   return this.http.post("http://localhost:3000/foodrecipe/c", formData).map(res=>res.json()); 
 }
 

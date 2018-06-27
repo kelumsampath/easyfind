@@ -31,8 +31,10 @@ router.get('/',(req,res)=>{
   });
 
   router.post('/c',upload.single('profpic'),(req,res)=>{
-    console.log(req.file);
-
+    cloudinary.uploader.upload(req.file.path,function(result) { 
+    console.log(result);
+    console.log(req.body.fullname);
+    });
   });
 
 

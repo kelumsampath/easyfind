@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit {
+  fullname: string;
   imageUrl:String = "../../../assets/images/defualt.jpg";
   fileToUpload:File = null;
 
@@ -23,6 +24,7 @@ export class TestComponent implements OnInit {
 
   test(){
     const user={
+      fullname:"ddsdfd",
      fileToUpload:this.fileToUpload
     }
     this.authservice.testing(user).subscribe(res=>{
