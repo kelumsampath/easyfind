@@ -1,5 +1,7 @@
 const express = require('express');
 const cloudinary = require('cloudinary');
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
 
 const router = express.Router();
 
@@ -20,6 +22,10 @@ router.get('/',(req,res)=>{
 
   });
 
+  router.post('/c',upload.single('image'),(req,res)=>{
+    res.send(req.file);
+
+  });
 
 
   module.exports = router;
