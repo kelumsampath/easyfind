@@ -12,9 +12,14 @@ export class AuthService {
     private http:Http,
   ) { }
   registerUser(user){
-    let headers = new Headers();
-    headers.append('content-Type','application/json');
-    return this.http.post("http://localhost:3000/user/register",user,{headers:headers}).map(res=>res.json());
+    const formData: FormData = new FormData();
+  formData.append('profpic', user.fileToUpload,user.fileToUpload.name);
+  formData.append('fullname',user.fullname);
+  formData.append('username',user.username);
+  formData.append('email',user.email);
+  formData.append('phoneno',user.phoneno);
+  formData.append('password',user.password);
+  return this.http.post("http://localhost:3000/user/register", formData).map(res=>res.json()); 
   };
 
   loginUser(user){

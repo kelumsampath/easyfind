@@ -1,16 +1,22 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const passport = require('passport');
-const passportlocal = require('passport-local');
-const passportjwt = require('passport-jwt');
-var blacklist = require('express-jwt-blacklist');
-var jwtp = require('express-jwt');
-const session = require('express-session');
+const cloudinary = require('cloudinary');
+const multer  = require('multer')
 
 const router = express.Router();
 const datamodelds = require('../../datamodels/user');
 const tokenmodels = require('../../datamodels/token');
 const token = require('../../config/token');
+
+const storage = multer.diskStorage({ 
+  destination: function(req,file,callback){
+    callback(null,'./uploads/');
+  },
+  filename: function(req,file,callback){
+    callback(null,file.originalname);
+  }
+});
+const upload = multer({ storage: storage })
 
 
 router.get('/',(req,res)=>{
@@ -18,8 +24,12 @@ router.get('/',(req,res)=>{
 });
 
 
-router.post('/register',(req,res)=>{
+router.post('/register',upload.single('profpic'),(req,res)=>{
   //console.log(req.body);
+  cloudinary.uploader.upload(req.file.path,function(result) { 
+    console.log(result);
+   
+   
   const regUser = new datamodelds({
     fullname:req.body.fullname,
     username:req.body.username,
@@ -41,6 +51,7 @@ router.post('/register',(req,res)=>{
       res.json({state:true,msg:"You have been successfully registered!"})
     }
   })
+  });
 });
 
 router.post('/login',(req,res)=>{

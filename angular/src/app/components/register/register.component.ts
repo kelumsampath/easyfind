@@ -34,6 +34,7 @@ registerData(){
     email:this.email,
     phoneno:this.phoneno,
     password:this.password,
+    fileToUpload:this.fileToUpload
   }
   this.authservice.registerUser(user).subscribe(res=>{
     if(res.state){
