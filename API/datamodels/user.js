@@ -53,4 +53,9 @@ module.exports.matchpassword = function(password,hash,callback){
     });
 }
 
+module.exports.getUserDetails = function(username,callback){
+    const query = {username:username};
+    datamodels.findOne(query,callback); 
+}
+
 module.exports.searchUser;

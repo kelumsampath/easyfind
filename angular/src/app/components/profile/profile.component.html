@@ -1,8 +1,66 @@
-<div *ngIf="user" class="container">
+<!--<div *ngIf="user" class="container">
 
   <div><h1>{{user.fullname}}</h1></div>
   <div>{{user.username}}</div>
   <div>{{user.email}}</div>
   <div>{{user.phoneno}}</div>
+  <div>{{user.prof_pic_alt}}</div>
+  <div></div>
+  <div><img src="{{user.prof_pic_link}}" alt="{{user.prof_pic_alt}}"></div>
+</div>-->
+<div class="block">
+  <div class="user">
+    <img src="{{user.prof_pic_link}}" class="avatar" alt="{{user.prof_pic_alt}}" />
 
+    <div class="usr-info">
+      <div class="rHa">
+        <div class="Yia">
+          <div class="gZa">
+            <div class="rna KXa Xia" guidedhelpid="profile_name"><b>{{user.username}}</b></div>
+          </div>
+          <div class="EXa Plb">
+
+          </div>
+        </div>
+        <div class="Yia Frc VQc"><div class="Nyb">
+          <div class="Ny">
+            <span class="J9a"><b>full name:</b></span>
+            <span class="K9a">{{user.fullname}}</span>
+          </div>
+          <div class="wyb FVb">
+            <div class="Ny">
+              <span class="J9a"><b>Email:</b></span>
+              <span class="K9a">{{user.email}}</span>
+            </div>
+            <div class="Ny">
+                <span class="J9a"><b>Phone Number:</b></span>
+                <span class="K9a">{{user.phoneno}}</span>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+      
+
+      
+    </div>
+  </div>
+
+  <div class="nav">
+    <div><span class="wrap">
+      <a href="#">About</a>
+      <b>•</b>
+      <a href="#" class="current-nav">Posts</a>
+      <b>•</b>
+        <a href="#">Photos</a>
+        <b>•</b>
+        <a href="#">YouTube</a>
+        <b>•</b>
+        <a href="#">+1's</a>
+        <b>•</b>
+        <a href="#">Reviews</a>
+      </span>
+    </div>
+  </div>
 </div>
