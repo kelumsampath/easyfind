@@ -2,3 +2,145 @@ h1{
     color:red;
     text-align: center;
 }
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  
+  html {
+    background: #E5E5E5;
+  }
+  
+  .block {
+    height: 368px;
+    margin: 0 auto;
+    width: 652px;
+    background: url(../../../assets/images/cover.jpg) top right no-repeat;
+    background-size: cover;
+  }
+  
+  .user {
+    height: 100%;
+    width: 280px;
+    position: relative;
+    text-align: center;
+    z-index: 1;
+  }
+  .user:before {
+    content: "";
+    display: block;
+    -webkit-filter: blur(4px);
+    -moz-filter: blur(4px);
+    filter: blur(4px);
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: -1;
+  }
+  .cssreflections .user:before {
+    background: url(https://lh4.googleusercontent.com/-MpYP8v5LFYk/UpwkFj09NjI/AAAAAAAAgv4/A4aegtvObzs/s652-fcrop64=1,169d09e6febdce7e/IMG_1272.jpg) 0 0 no-repeat;
+    background-size: cover;
+  }
+  .no-cssreflections .user:before {
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  .avatar {
+    height: 150px;
+    width: 150px;
+    border-radius: 80%;
+    margin-top: 20px;
+  }
+  
+  .circle-button {
+    box-shadow: 0 2px 0px rgba(0, 0, 0, 0.25);
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    border-radius: 4px;
+    display: table;
+    height: 42px;
+    margin: 0 auto;
+    width: 100px;
+    vertical-align: middle;
+    font-size: 14px;
+    font-weight: 300;
+    background: #DC4836;
+    color: white;
+  }
+  .circle-button:hover {
+    box-shadow: inset 0 0 0 2px white;
+    cursor: pointer;
+    background: #de5140;
+  }
+  .circle-button > div {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  
+  .usr-info {
+    margin-top: 20px;
+    font-weight: 300;
+  }
+  
+  .icon {
+    font-size: 18px;
+  }
+  
+  .Yia {
+    margin-bottom: 15px;
+    
+  }
+  
+  .Xia {
+    font-size: 50px;
+    color: red;
+    
+  }
+  
+  .Ny,
+  .followers {
+    font-size: 20px;
+    color: crimson;
+  }
+  
+  .followers {
+    margin-top: 16px;
+  }
+  
+  .nav {
+    display: table;
+    height: 45px;
+    width: 100%;
+    text-align: center;
+    background: #DC4836;
+  }
+  .nav > div {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  .nav a {
+    vertical-align: bottom;
+    margin: 0 6px;
+    text-decoration: none;
+    color: white;
+    padding-bottom: 12px;
+  }
+  .nav a:hover {
+    border-bottom: 4px solid white;
+  }
+  .nav b {
+    color: #8c2518;
+  }
+  
+  .current-nav {
+    border-bottom: 4px solid white;
+  }
+  
