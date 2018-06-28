@@ -13,14 +13,16 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { Router } from '@angular/router/src/router';
 import { AuthService } from './service/auth.service';
 import { AuthGuard } from './service/auth.guard';
-import { RootComponent } from './root/root.component';
+import { RootComponent } from './components/root/root.component';
 import { TestComponent } from './components/test/test.component';
+import { FoodrecipeComponent } from './components/foodrecipe/foodrecipe.component';
 
 const applicationRoutes:Routes = [
   {path:'',component:RootComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'profile',component:ProfileComponent, canActivate: [AuthGuard]},
+  {path:'foodrecipe',component:FoodrecipeComponent},
   {path:'test',component:TestComponent},
 ];
 
@@ -32,7 +34,8 @@ const applicationRoutes:Routes = [
     RegisterComponent,
     ProfileComponent,
     RootComponent,
-    TestComponent
+    TestComponent,
+    FoodrecipeComponent
   ],
   imports: [
     BrowserModule,
