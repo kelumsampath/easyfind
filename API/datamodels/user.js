@@ -7,7 +7,8 @@ const userSchema = new schema({
     username:{type:String,required:true, unique:true},
     email:{type:String,required:true},
     phoneno:{type:Number,required:true},
-    password:{type:String,required:true}
+    password:{type:String,required:true},
+    profpic_cloud_id:{type:String,required:true}
 
 });
 
@@ -50,6 +51,11 @@ module.exports.matchpassword = function(password,hash,callback){
         }
        // console.log(res);
     });
+}
+
+module.exports.getUserDetails = function(username,callback){
+    const query = {username:username};
+    datamodels.findOne(query,callback); 
 }
 
 module.exports.searchUser;

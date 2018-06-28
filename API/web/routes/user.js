@@ -1,16 +1,22 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
-const passport = require('passport');
-const passportlocal = require('passport-local');
-const passportjwt = require('passport-jwt');
-var blacklist = require('express-jwt-blacklist');
-var jwtp = require('express-jwt');
-const session = require('express-session');
+const cloudinary = require('cloudinary');
+const multer  = require('multer')
 
 const router = express.Router();
 const datamodelds = require('../../datamodels/user');
 const tokenmodels = require('../../datamodels/token');
 const token = require('../../config/token');
+
+const storage = multer.diskStorage({ 
+  destination: function(req,file,callback){
+    callback(null,'./uploads/');
+  },
+  filename: function(req,file,callback){
+    callback(null,file.originalname);
+  }
+});
+const upload = multer({ storage: storage })
 
 
 router.get('/',(req,res)=>{
@@ -18,29 +24,34 @@ router.get('/',(req,res)=>{
 });
 
 
-router.post('/register',(req,res)=>{
+router.post('/register',upload.single('profpic'),(req,res)=>{
   //console.log(req.body);
+  cloudinary.uploader.upload(req.file.path,function(result) { 
+    //console.log(result);
   const regUser = new datamodelds({
     fullname:req.body.fullname,
     username:req.body.username,
     email:req.body.email,
     phoneno:req.body.phoneno,
-    password:req.body.password
+    password:req.body.password,
+    profpic_cloud_id:result.public_id
   });
   //console.log(regUser);
   datamodelds.dbSave(regUser,(err,user)=>{
     if(err){
-      
+      cloudinary.uploader.destroy(result.public_id, function(result) {
         if (err.name === 'MongoError' && err.code === 11000) {
            // console.log('There was a duplicate key error');
            res.json({state:false,msg:"Your username already used!"}) 
         }else{
            res.json({state:false,msg:"Something Went wrong!"})
         }
+      })
     }else{
       res.json({state:true,msg:"You have been successfully registered!"})
     }
   })
+  });
 });
 
 router.post('/login',(req,res)=>{
@@ -104,9 +115,31 @@ router.post('/login',(req,res)=>{
 
 
 router.get('/profile',token.verifytoken,(req,res)=>{
-  var userdata = req.user;
-  //console.log(req.session);
-  res.json(userdata);
+ // var userdata = req.user;
+  //console.log(userdata.username);
+  datamodelds.getUserDetails(req.user.username,function(err,user){
+    if(err) {throw err;
+    //console.log(user.email);
+    }else{
+    const img =cloudinary.image(user.profpic_cloud_id, { alt: "Sample Image" });
+    const link = img.split("'");
+    //console.log(link[1]);
+    const loggeduser = { _id: user._id,
+      fullname:user.fullname,
+      username:user.username,
+      email:user.email,
+      phoneno:user.phoneno,
+      password:user.password,
+      profpic_cloud_id:user.profpic_cloud_id,
+      prof_pic_link:link[1],
+      prof_pic_alt:link[3],
+      __v: user.__v };
+
+    res.json(loggeduser);
+
+
+    }
+  });
 
 });
 

@@ -25,7 +25,7 @@ router.get('/',(req,res)=>{
   });
   
   router.get('/b',(req,res)=>{
-    const img =cloudinary.image("piuipwj6i5vuzejf279j.jpg", { alt: "Sample Image" });
+    const img =cloudinary.image("ng2otifhmygbs8oquaxj", { alt: "Sample Image" });
     res.send(img);
 
   });
