@@ -1,0 +1,62 @@
+
+.slideshow-container {
+ 
+  position: relative;
+  margin: auto;
+  width: 100%;
+}
+.nav_image {
+    border-radius: 50%;
+    width:100px; 
+    height: 100px;
+   
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:#111111;
+
+}
+
+li {
+    position: relative;
+    float: left;
+    margin-inline-start: 75px;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    border-radius: 80%;
+    background-color:beige;
+}
+
+
+#menu-outer {
+	height: 80px;
+    background: url(../../../assets/images/cover.jpg) repeat-x;
+    
+}
+
+.table {
+	display: table;   /* Allow the centering to work */
+	margin: 0 auto;
+}
+
+ul#horizontal-list {
+	min-width: 696px;
+	list-style: none;
+	padding-top: 20px;
+	}
+	ul#horizontal-list li {
+		display: inline;
+	}
