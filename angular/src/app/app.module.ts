@@ -4,6 +4,7 @@ import { RouterModule,Routes } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { NgFlashMessagesModule } from 'ng-flash-messages';
+import {SlideshowModule} from 'ng-simple-slideshow';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -41,6 +42,7 @@ const applicationRoutes:Routes = [
     BrowserModule,
     HttpModule,
     FormsModule,
+    SlideshowModule,
     RouterModule.forRoot(applicationRoutes),
     NgFlashMessagesModule.forRoot()
   ],
