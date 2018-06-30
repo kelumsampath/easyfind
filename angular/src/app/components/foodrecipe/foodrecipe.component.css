@@ -1,15 +1,8 @@
-
-.slideshow-container {
- 
-  position: relative;
-  margin: auto;
-  width: 100%;
-}
 .nav_image {
     border-radius: 50%;
     width:100px; 
     height: 100px;
-   
+  
   }
 
   ul {
@@ -24,17 +17,22 @@
 li {
     position: relative;
     float: left;
-    margin-inline-start: 75px;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-inline-end: auto;
+    margin-block-end: auto;
+    margin-inline-start: auto;
+    margin-block-start: auto;
 }
 
 li a {
     display: block;
     color: white;
     text-align: center;
-    padding: 16px;
+    padding: 20px;
     text-decoration: none;
 }
-
+ 
 li a:hover {
     border-radius: 80%;
     background-color:beige;
@@ -42,7 +40,7 @@ li a:hover {
 
 
 #menu-outer {
-	height: 80px;
+	height: auto;
     background: url(../../../assets/images/cover.jpg) repeat-x;
     
 }
@@ -53,10 +51,13 @@ li a:hover {
 }
 
 ul#horizontal-list {
-	min-width: 696px;
+	min-width: auto;
 	list-style: none;
-	padding-top: 20px;
+	
 	}
 	ul#horizontal-list li {
-		display: inline;
+        position: relative;
+        display: inline;
+        margin-left: 6%;
+      
 	}

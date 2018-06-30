@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FoodrecipeComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    
+   }
 
   ngOnInit() {
   }
+  imageSources = ["../../../assets/images/cover.jpg",
+  "http://bestcoverpix.com/wp-content/uploads/2014/01/clear-water-island-Nature-Facebook-covers.jpg",
+  "../../../assets/images/cover.jpg"];
 
 }
