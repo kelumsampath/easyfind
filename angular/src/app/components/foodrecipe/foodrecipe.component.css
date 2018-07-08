@@ -1,0 +1,63 @@
+.nav_image {
+    border-radius: 50%;
+    width:100px; 
+    height: 100px;
+  
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color:#111111;
+
+}
+
+li {
+    position: relative;
+    float: left;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-inline-end: auto;
+    margin-block-end: auto;
+    margin-inline-start: auto;
+    margin-block-start: auto;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+}
+ 
+li a:hover {
+    border-radius: 80%;
+    background-color:beige;
+}
+
+
+#menu-outer {
+	height: auto;
+    background: url(../../../assets/images/cover.jpg) repeat-x;
+    
+}
+
+.table {
+	display: table;   /* Allow the centering to work */
+	margin: 0 auto;
+}
+
+ul#horizontal-list {
+	min-width: auto;
+	list-style: none;
+	
+	}
+	ul#horizontal-list li {
+        position: relative;
+        display: inline;
+        margin-left: 6%;
+      
+	}

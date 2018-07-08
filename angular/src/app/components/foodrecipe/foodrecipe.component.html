@@ -1,3 +1,25 @@
-<p>
-  foodrecipe works!
-</p>
+
+<slideshow [height]="'300px'"
+           [minHeight]="'0px'"
+           [autoPlay]="true"
+           [showArrows]="true"
+           [showDots]="true"
+           [imageUrls]="imageSources"
+           [lazyLoad]="imageSources?.length > 1"
+           [autoPlayWaitForLazyLoad]="true">
+</slideshow>
+
+
+
+<div id="menu-outer">
+    <div class="table">
+      <ul id="horizontal-list">
+        <li><a href="#"><img src="../../../assets/images/navbar/rice.jpg" alt="list item 1" class="nav_image" /></a></li>
+        <li><a href="#"><img src="../../../assets/images/navbar/pastry.jpg" alt="list item 2" class="nav_image" /></a></li>
+        <li><a href="#"><img src="../../../assets/images/navbar/cake.jpg" alt="list item 3" class="nav_image" /></a></li>
+        <li><a href="#"><img src="../../../assets/images/navbar/rice.jpg" alt="list item 4" class="nav_image" /></a></li>
+        <li><a href="#"><img src="../../../assets/images/navbar/rice.jpg" alt="list item 4" class="nav_image" /></a></li>
+        <li><a href="#"><img src="../../../assets/images/navbar/rice.jpg" alt="list item 4" class="nav_image" /></a></li>
+      </ul>
+    </div>
+  </div>
