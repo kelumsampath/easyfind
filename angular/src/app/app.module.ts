@@ -8,15 +8,16 @@ import {SlideshowModule} from 'ng-simple-slideshow';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { LoginComponent } from './components/user/login/login.component';
+import { RegisterComponent } from './components/user/register/register.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
 import { Router } from '@angular/router/src/router';
 import { AuthService } from './service/auth.service';
 import { AuthGuard } from './service/auth.guard';
 import { RootComponent } from './components/root/root.component';
 import { TestComponent } from './components/test/test.component';
-import { FoodrecipeComponent } from './components/foodrecipe/foodrecipe.component';
+import { FoodrecipeComponent } from './components/foodrecipes/foodrecipe/foodrecipe.component';
+import { AddrecipeComponent } from './components/foodrecipes/addrecipe/addrecipe.component';
 
 const applicationRoutes:Routes = [
   {path:'',component:RootComponent},
@@ -25,6 +26,7 @@ const applicationRoutes:Routes = [
   {path:'profile',component:ProfileComponent, canActivate: [AuthGuard]},
   {path:'foodrecipe',component:FoodrecipeComponent},
   {path:'test',component:TestComponent},
+  {path:'addrecipe',component:AddrecipeComponent},
 ];
 
 @NgModule({
@@ -36,7 +38,8 @@ const applicationRoutes:Routes = [
     ProfileComponent,
     RootComponent,
     TestComponent,
-    FoodrecipeComponent
+    FoodrecipeComponent,
+    AddrecipeComponent
   ],
   imports: [
     BrowserModule,
