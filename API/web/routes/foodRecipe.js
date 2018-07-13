@@ -37,8 +37,8 @@ router.get('/',(req,res)=>{
     });
   });
 
-  router.post('/addrecipe',(req,res)=>{
-    console.log(req.body);
+  router.post('/addrecipe',upload.single('foodimg'),(req,res)=>{
+    console.log(req.body.recipename);
     res.json({state:true,msg:"data comed!"});
 
   });

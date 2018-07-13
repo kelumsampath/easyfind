@@ -26,7 +26,7 @@ const applicationRoutes:Routes = [
   {path:'profile',component:ProfileComponent, canActivate: [AuthGuard]},
   {path:'foodrecipe',component:FoodrecipeComponent},
   {path:'test',component:TestComponent},
-  {path:'addrecipe',component:AddrecipeComponent},
+  {path:'addrecipe',component:AddrecipeComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

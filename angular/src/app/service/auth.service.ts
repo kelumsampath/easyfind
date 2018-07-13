@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 export class AuthService {
   user:any;
   authtoken:any;
+ 
 
   constructor(
     private http:Http,
@@ -48,6 +49,7 @@ fetchtoken(){
   this.authtoken = token;
 };
 
+
 logOut(){
 
   this.fetchtoken();
@@ -75,6 +77,7 @@ testing(user){
 addrecipe(newrecipe){
   const formData: FormData = new FormData();
   formData.append('foodimg', newrecipe.fileToUpload,newrecipe.fileToUpload.name);
+  formData.append('recipename',newrecipe.recipename);
   formData.append('ingredients',newrecipe.ingredients);
   formData.append('directions',newrecipe.directions);
   formData.append('preptime',newrecipe.preptime);
