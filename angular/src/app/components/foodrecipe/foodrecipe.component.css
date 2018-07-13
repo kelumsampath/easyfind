@@ -40,8 +40,9 @@ li a:hover {
 
 
 #menu-outer {
+    margin-top: 0px;
 	height: auto;
-    background: url(../../../assets/images/cover.jpg) repeat-x;
+    
     
 }
 
