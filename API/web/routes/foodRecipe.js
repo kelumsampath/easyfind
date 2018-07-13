@@ -37,5 +37,11 @@ router.get('/',(req,res)=>{
     });
   });
 
+  router.post('/addrecipe',(req,res)=>{
+    console.log(req.body);
+    res.json({state:true,msg:"data comed!"});
+
+  });
+
 
   module.exports = router;

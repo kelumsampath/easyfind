@@ -72,5 +72,20 @@ testing(user){
   return this.http.post("http://localhost:3000/foodrecipe/c", formData).map(res=>res.json()); 
 }
 
+addrecipe(newrecipe){
+  const formData: FormData = new FormData();
+  formData.append('foodimg', newrecipe.fileToUpload,newrecipe.fileToUpload.name);
+  formData.append('ingredients',newrecipe.ingredients);
+  formData.append('directions',newrecipe.directions);
+  formData.append('preptime',newrecipe.preptime);
+  formData.append('cooktime',newrecipe.cooktime);
+  formData.append('readytime',newrecipe.readytime);
+  formData.append('serves',newrecipe.serves);
+  formData.append('notes',newrecipe.notes);
+  formData.append('rate',newrecipe.rate);
+  formData.append('description',newrecipe.description);
+  return this.http.post("http://localhost:3000/foodrecipe/addrecipe", formData).map(res=>res.json()); 
+};
+
 
 }
