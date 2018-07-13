@@ -1,6 +1,7 @@
 const express = require('express');
 const cloudinary = require('cloudinary');
-const multer  = require('multer')
+const multer  = require('multer');
+const token = require('../../config/token');
 const storage = multer.diskStorage({ 
   destination: function(req,file,callback){
     callback(null,'./uploads/');
@@ -12,6 +13,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 const router = express.Router();
+
 
 router.get('/',(req,res)=>{
     res.send("Hello foodrecipe!");
@@ -37,8 +39,9 @@ router.get('/',(req,res)=>{
     });
   });
 
-  router.post('/addrecipe',upload.single('foodimg'),(req,res)=>{
+  router.post('/addrecipe',upload.single('foodimg'),token.verifyfiletoken,(req,res)=>{
     console.log(req.body.recipename);
+    console.log(req.user.username);
     res.json({state:true,msg:"data comed!"});
 
   });

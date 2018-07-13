@@ -75,7 +75,13 @@ testing(user){
 }
 
 addrecipe(newrecipe){
+  //this.fetchtoken();
+  const token = localStorage.getItem("tokenid");
+  //let headers = new Headers();
   const formData: FormData = new FormData();
+  formData.append('Authorization',token);
+  //formData.append('content-Type','application/json');
+  
   formData.append('foodimg', newrecipe.fileToUpload,newrecipe.fileToUpload.name);
   formData.append('recipename',newrecipe.recipename);
   formData.append('ingredients',newrecipe.ingredients);
