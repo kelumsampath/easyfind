@@ -19,6 +19,7 @@ export class AddrecipeComponent implements OnInit {
   serves:number;
   notes:string;
   rate:string;
+  catagory:String;
   description:string;
   imageUrl:String = "../../../assets/images/defualt.jpg";
   fileToUpload:File = null;
@@ -44,6 +45,7 @@ addrecipe(){
   serves:this.serves,
   notes:this.notes,
   rate:this.rate,
+  catagory:this.catagory,
   description:this.description,
   fileToUpload:this.fileToUpload
   }
