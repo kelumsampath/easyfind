@@ -55,6 +55,7 @@ addrecipe(){
   if(res.state){
   this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: true,timeout: 4000,type: 'success'});
   console.log(res.msg);
+  this.router.navigate(['foodrecipe']);
   }
   else{
   console.log(res.msg);
