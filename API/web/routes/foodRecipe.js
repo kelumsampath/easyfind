@@ -41,8 +41,8 @@ router.get('/',(req,res)=>{
   });
 
   router.post('/addrecipe',upload.single('foodimg'),token.verifyfiletoken,(req,res)=>{
-    console.log(req.body.recipename);
-    console.log(req.user.username);
+   // console.log(req.body.recipename);
+    //console.log(req.user.username);
     cloudinary.uploader.upload(req.file.path,function(result) { 
     const regRecipe = new recipemodels({
       username:req.user.username,
