@@ -1,0 +1,17 @@
+table{
+    width: 100%;
+    
+}
+
+#menu{
+    width: 80%;
+    height: 200px;
+    box-align:"left";
+    border-style: solid;
+    border-color: red; 
+    text-align: center;
+}
+ul{
+    list-style-type:none;
+    margin-top: 20px;
+    }
