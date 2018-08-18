@@ -77,5 +77,21 @@ router.get('/',(req,res)=>{
   })
   });
 
+  router.post('/getallrecipe',(req,res)=>{
+   
+    recipemodels.getAllrecipe("csc",(err,recipe)=>{
+      if(err) {
+        //throw err;
+        console.log("Allrecipe data retrive error");
+        res.json({state:false});
+       
+      }
+      else{
+        res.json({state:true,recipe:recipe});
+      }
+    })
+    
+  });
+
 
   module.exports = router;
