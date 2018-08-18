@@ -11,12 +11,14 @@
   
             <div class="form-group">
                 <label for="exampleInputPassword1">Ingredients</label>
-                <input type="textarea"  class="form-control" id="ingredients"  name="ingredients" [(ngModel)]="ingredients"  >
+               <!-- <input type="textarea"  class="form-control" id="ingredients"  name="ingredients" [(ngModel)]="ingredients"  > -->
+                <textarea cols="5" rows="10" class="form-control" id="ingredients" placeholder="enter Ingredients" name="ingredients" [(ngModel)]="ingredients" ></textarea>
               </div>
             
             <div class="form-group">
               <label for="exampleInputPassword1">Directions</label>
-              <input type="text"  class="form-control" id="directions"  name="directions" [(ngModel)]="directions"  >
+              <!--input type="text"  class="form-control" id="directions"  name="directions" [(ngModel)]="directions"  -->
+              <textarea cols="5" rows="10" class="form-control" id="directions" placeholder="enter Directions" name="directions" [(ngModel)]="directions" ></textarea>
             </div>
 
             <div class="form-group">
@@ -38,12 +40,12 @@
               <label for="exampleInputPassword1">No of Serves</label>
               <input type="number"   min="0" class="form-control" id="serves"  name="serves" [(ngModel)]="serves" >
             </div>
-  
+            <!--
             <div class="form-group">
               <label for="exampleInputPassword1">Notes</label>
               <input type="text"  class="form-control" id="notes"  name="notes" [(ngModel)]="notes" >
             </div>
-  
+            -->
             <div class="form-group">
                 <label for="exampleInputPassword1">Rate</label><br>
                 <input type="radio" class="" id="rate" name="rate" [(ngModel)]="rate" value="Hard">Hard<br>
@@ -54,20 +56,20 @@
   
           <div class="form-group">
               <label for="exampleInputPassword1">Notes</label>
-              <textarea cols="5" rows="20" class="form-control" id="notes" placeholder="enter ingredients" name="notes" [(ngModel)]="notes" ></textarea>
+              <textarea cols="5" rows="10" class="form-control" id="notes" placeholder="enter ingredients" name="notes" [(ngModel)]="notes" ></textarea>
             </div>
           
             <div class="form-group">
-              <label for="exampleInputPassword1">Rate</label><br>
-              <input type="radio" class="" id="rate" name="rate" [(ngModel)]="rate" value="Rice and Curry">Rice and curry<br>
-              <input type="radio" class="" id="rate" name="rate" [(ngModel)]="rate" value="Cakes">Cakes<br>
-              <input type="radio" class="" id="rate" name="rate" [(ngModel)]="rate" value="Short Meal">Short Meal<br>
-              <input type="radio" class="" id="rate" name="rate" [(ngModel)]="rate" value="Drinks">Drinks<br>
+              <label for="exampleInputPassword1">Category</label><br>
+              <input type="radio" class="" id="catagory" name="catagory" [(ngModel)]="catagory" value="Rice and Curry">Rice and curry<br>
+              <input type="radio" class="" id="catagory" name="catagory" [(ngModel)]="catagory" value="Cakes">Cakes<br>
+              <input type="radio" class="" id="catagory" name="catagory" [(ngModel)]="catagory" value="Short Meal">Short Meal<br>
+              <input type="radio" class="" id="catagory" name="catagory" [(ngModel)]="catagory" value="Drinks">Drinks<br>
             </div>
 
             <div class="form-group">
               <label for="exampleInputPassword1">Quick Discription</label>
-              <textarea cols="5" rows="20" class="form-control" id="description" placeholder="enter description" name="description" [(ngModel)]="description" ></textarea>
+              <textarea cols="5" rows="10" class="form-control" id="description" placeholder="enter description" name="description" [(ngModel)]="description" ></textarea>
             </div>
           
             <div>
