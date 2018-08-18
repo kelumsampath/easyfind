@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from "../../../service/auth.service";
+import { NgFlashMessageService } from 'ng-flash-messages';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-allrecipe',
@@ -6,18 +9,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./allrecipe.component.css']
 })
 export class AllrecipeComponent implements OnInit {
-
-  constructor() {
-    const accountList={
-      Amount:100,
-    }
+  recipe:any;
+  heroes:any;
+  constructor(
+    private authservice:AuthService,
+    private ngFlashMessageService: NgFlashMessageService,
+    private router:Router,
+  ) {
+    this.authservice.getAllRecipe().subscribe(res=>{
+      if(res.state){
+        this.heroes = res.recipe;
+        //console.log("ds");
+        //console.log(res.recipe);
+        //this.recipe=res.recipe;
+        //console.log(this.recipe);
+      }
+        else{
+          this.ngFlashMessageService.showFlashMessage({messages: ["SERVER ERROR OCCUERED!"],dismissible: true,timeout: 4000,type: 'danger'});
+        }
+    });
    }
 
   ngOnInit() {
-   
+  
   }
-  title = 'Tour of Heroes';
-  heroes = ['Windstorm', 'Bombasto', 'Magneta'];
-  myHero = this.heroes[0];
-
+ // title = 'Tour of Heroes';
+ // heroes = ['Windstorm', 'Bombasto', 'Magneta'];
+ // myHero = this.heroes[0];
+ 
 }
