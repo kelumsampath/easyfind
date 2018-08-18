@@ -44,6 +44,8 @@ router.get('/',(req,res)=>{
    // console.log(req.body.recipename);
     //console.log(req.user.username);
     cloudinary.uploader.upload(req.file.path,function(result) { 
+      const img =cloudinary.image(result.public_id, { alt: "Sample Image" });
+      const link = img.split("'");
     const regRecipe = new recipemodels({
       username:req.user.username,
       recipename:req.body.recipename,
@@ -57,7 +59,7 @@ router.get('/',(req,res)=>{
       rate:req.body.rate,
       catagory:req.body.catagory,
       description:req.body.description,
-      imageUrl:result.public_id
+      imageUrl:link[1]
     });
     recipemodels.dbSave(regRecipe,(err,user)=>{
       if(err){
@@ -87,6 +89,7 @@ router.get('/',(req,res)=>{
        
       }
       else{
+    
         res.json({state:true,recipe:recipe});
       }
     })
