@@ -5,8 +5,10 @@
         <ul *ngFor="let hero of heroes;let i = index" [attr.data-index]="i">
            <li>
              <div id="menu">
+             <img src="{{ hero.imageUrl }}" id="pic" alt="" height="100px">
              <h1> {{ hero.recipename }}</h1>
              {{ hero.description  }}
             </div>
+            
            </li>
           </ul>
