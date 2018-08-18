@@ -92,6 +92,7 @@ addrecipe(newrecipe){
   formData.append('serves',newrecipe.serves);
   formData.append('notes',newrecipe.notes);
   formData.append('rate',newrecipe.rate);
+  formData.append('catagory',newrecipe.catagory);
   formData.append('description',newrecipe.description);
   return this.http.post("http://localhost:3000/foodrecipe/addrecipe", formData).map(res=>res.json()); 
 };
