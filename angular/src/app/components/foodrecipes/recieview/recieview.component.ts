@@ -27,7 +27,7 @@ export class RecieviewComponent implements OnInit {
     this.authservice.getviewRecipe(this.myrecipe).subscribe(res=>{
       if(res.state){
         this.recipe = res.recipe;
-        const myrecipe={
+        this.myrecipe={
           "recipename":this.recipe.recipename,
           "ingredients":this.recipe.ingredients,
           "directions" :this.recipe.directions,
@@ -42,10 +42,10 @@ export class RecieviewComponent implements OnInit {
           "fileToUpload" :this.recipe.pic_url
           }
         
-        //console.log("ds");
+        //console.log(myrecipe);
        /// console.log(this.recipe.recipename);
         //this.recipe=res.recipe;
-        //console.log(this.recipe);
+        //console.log(res.recipe);
       }
         else{
           this.ngFlashMessageService.showFlashMessage({messages: ["SERVER ERROR OCCUERED!"],dismissible: true,timeout: 4000,type: 'danger'});
