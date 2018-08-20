@@ -15,3 +15,7 @@ ul{
     list-style-type:none;
     margin-top: 20px;
     }
+img {
+    float: left;
+    height: 190px;
+}

@@ -18,9 +18,14 @@ const recepeSchema = new schema({
     imageUrl:{type:String,required:false}
 });
 
-module.exports = mongoose.model("recipemodels",recepeSchema);
+const recipemodels=module.exports = mongoose.model("recipemodels",recepeSchema);
 
-module.exports.dbSave = function(regUser,callback){
-    regUser.save(callback);
+module.exports.dbSave = function(regRecipe,callback){
+    regRecipe.save(callback);
  
 }
+
+module.exports.getAllrecipe = function(dd,callback){
+    const query = {};
+    recipemodels.find(query,callback);
+}; 
