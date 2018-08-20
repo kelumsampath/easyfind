@@ -19,6 +19,7 @@ import { TestComponent } from './components/test/test.component';
 import { FoodrecipeComponent } from './components/foodrecipes/foodrecipe/foodrecipe.component';
 import { AddrecipeComponent } from './components/foodrecipes/addrecipe/addrecipe.component';
 import { AllrecipeComponent } from './components/foodrecipes/allrecipe/allrecipe.component';
+import { RecieviewComponent } from './components/foodrecipes/recieview/recieview.component';
 
 const applicationRoutes:Routes = [
   {path:'',component:RootComponent},
@@ -29,6 +30,7 @@ const applicationRoutes:Routes = [
   {path:'test',component:TestComponent},
   {path:'addrecipe',component:AddrecipeComponent, canActivate: [AuthGuard]},
   {path:'allrecipe',component:AllrecipeComponent},
+  {path:'allrecipe/:id',component:RecieviewComponent}
 ];
 
 @NgModule({
@@ -42,7 +44,8 @@ const applicationRoutes:Routes = [
     TestComponent,
     FoodrecipeComponent,
     AddrecipeComponent,
-    AllrecipeComponent
+    AllrecipeComponent,
+    RecieviewComponent
   ],
   imports: [
     BrowserModule,

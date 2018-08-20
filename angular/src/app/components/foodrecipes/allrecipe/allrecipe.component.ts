@@ -22,7 +22,7 @@ export class AllrecipeComponent implements OnInit {
         this.heroes = res.recipe;
         this.imgurl = res.pic_url;
         //console.log("ds");
-        console.log(res.recipe);
+       // console.log(res.recipe);
         //this.recipe=res.recipe;
         //console.log(this.recipe);
       }
