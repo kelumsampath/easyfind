@@ -13,6 +13,8 @@ export class RecieviewComponent implements OnInit {
   recipe:any;
   imgurl:String;
   myrecipe:any;
+  likeDeta:any;
+  Islike:boolean;
   constructor(private activatedRoute: ActivatedRoute,
               private authservice:AuthService,
               private ngFlashMessageService: NgFlashMessageService,
@@ -53,10 +55,33 @@ export class RecieviewComponent implements OnInit {
           this.ngFlashMessageService.showFlashMessage({messages: ["SERVER ERROR OCCUERED!"],dismissible: true,timeout: 4000,type: 'danger'});
         }
     });
+
+    this.authservice.checklike(this.myrecipe.recipename).subscribe(res=>{
+      if(res.state){
+       console.log("liked");
+      }
+        else{
+          this.ngFlashMessageService.showFlashMessage({messages: ["NOT LIKED"],dismissible: true,timeout: 4000,type: 'danger'});
+        }
+    });
    }
 
   ngOnInit() {
   
   }
+
+  like(){
+   
+   
+    this.authservice.likeRecipe(this.myrecipe.recipename).subscribe(res=>{
+      if(res.state){
+       //
+      }
+        else{
+          this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: true,timeout: 4000,type: 'danger'});
+        }
+    });
+  }
+  
 
 }

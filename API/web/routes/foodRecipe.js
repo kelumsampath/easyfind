@@ -3,6 +3,7 @@ const cloudinary = require('cloudinary');
 const multer  = require('multer');
 const token = require('../../config/token');
 const recipemodels = require('../../datamodels/foodrecipe');
+const likerecipemodel= require('../../datamodels/likerecipe');
 const storage = multer.diskStorage({ 
   destination: function(req,file,callback){
     callback(null,'./uploads/');
@@ -115,5 +116,55 @@ router.get('/',(req,res)=>{
     
   });
 
+  router.post('/likerecipe',token.verifytoken,(req,res)=>{
+    //console.log(req.body.recipename);
+    //console.log(req.user.username);
+    const likeData = new likerecipemodel({
+      username:req.body.recipename,
+      recipename:req.user.username
+    });
+    likerecipemodel.dbSave(likeData,(err,user)=>{
+      if(err){
+          if (err.name === 'MongoError' && err.code === 11000) {
+             // console.log('There was a duplicate key error');
+             res.json({state:false,msg:"You already liked!"}) 
+          }else{
+             res.json({state:false,msg:"Something Went wrong!"})
+          }
+        
+      }else{
+        res.json({state:true,msg:"liked!"})
+      }
+    })
+  });
+
+  router.post('/checklike',token.verifytoken2,(req,res)=>{
+   // console.log(req.body.recipename);
+    //console.log(req.user.username);
+    const likeData = new likerecipemodel({
+      username:req.body.recipename,
+      recipename:req.user.username
+    });
+    likerecipemodel.Isliked(likeData,(err,user)=>{
+      if(err){
+          if (err.name === 'MongoError' && err.code === 11000) {
+             // console.log('There was a duplicate key error');
+             res.json({state:false,msg:"You already liked!"}) 
+          }else{
+             res.json({state:false,msg:"Something Went wrong!"})
+          }
+        
+      }else{
+        if(user[0]!=null){
+        //console.log(user[0].username);
+        res.json({state:true,msg:"liked!"});
+        }else{
+         // console.log("undi");
+         res.json({state:false,msg:"not liked!"});
+        }  
+      }
+    })
+   
+  });
 
   module.exports = router;
