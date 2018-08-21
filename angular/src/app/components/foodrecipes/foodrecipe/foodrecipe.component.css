@@ -1,40 +1,23 @@
 .nav_image {
     border-radius: 50%;
-    width:100px; 
-    height: 100px;
+    width:150px; 
+    height: 150px;
   
   }
 
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color:#111111;
 
-}
 
-li {
-    position: relative;
-    float: left;
-    margin-left: 5%;
-    margin-right: 5%;
-    margin-inline-end: auto;
-    margin-block-end: auto;
-    margin-inline-start: auto;
-    margin-block-start: auto;
-}
 
-li a {
-    display: block;
+img {
+   
     color: white;
-    text-align: center;
+    
     padding: 20px;
-    text-decoration: none;
+   
 }
  
-li a:hover {
-    border-radius: 80%;
+img:hover {
+    border-radius: 60%;
     background-color:beige;
 }
 
@@ -51,14 +34,10 @@ li a:hover {
 	margin: 0 auto;
 }
 
-ul#horizontal-list {
-	min-width: auto;
-	list-style: none;
-	
-	}
-	ul#horizontal-list li {
-        position: relative;
-        display: inline;
-        margin-left: 6%;
-      
-	}
+
+table{
+    width: 100%;
+    text-align: center;
+    background-color:#111111;
+     
+}
