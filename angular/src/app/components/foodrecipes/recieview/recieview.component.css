@@ -1,0 +1,23 @@
+#outbox{
+    width: 90%;
+    text-align-last: center;
+    margin-left: 5%;
+    margin-top: 2%;
+    margin-bottom: 2%;
+}
+table{
+    width: 90%;
+    margin-left: 5%;
+
+}
+img{
+    width: 300px;
+    height: 300px;
+}
+
+.like{
+    margin-left: 5%;
+}
+.back{
+    margin-right: 5%;
+}

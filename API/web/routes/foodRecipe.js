@@ -98,7 +98,7 @@ router.get('/',(req,res)=>{
 
   
   router.post('/getviewrecipe',(req,res)=>{
-   console.log(req.body.recipename);
+   //console.log(req.body.recipename);
    //res.json({state:false});
     recipemodels.getViewrecipe(req.body.recipename,(err,recipe)=>{
       if(err) {
@@ -108,7 +108,7 @@ router.get('/',(req,res)=>{
        
       }
       else{
-        
+       // console.log(recipe[0]);
         res.json({state:true,recipe:recipe[0]});
       }
     })
