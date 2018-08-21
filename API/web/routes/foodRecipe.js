@@ -96,5 +96,24 @@ router.get('/',(req,res)=>{
     
   });
 
+  
+  router.post('/getviewrecipe',(req,res)=>{
+   console.log(req.body.recipename);
+   //res.json({state:false});
+    recipemodels.getViewrecipe(req.body.recipename,(err,recipe)=>{
+      if(err) {
+        //throw err;
+        console.log("Allrecipe data retrive error");
+        res.json({state:false});
+       
+      }
+      else{
+        
+        res.json({state:true,recipe:recipe[0]});
+      }
+    })
+    
+  });
+
 
   module.exports = router;

@@ -29,3 +29,8 @@ module.exports.getAllrecipe = function(dd,callback){
     const query = {};
     recipemodels.find(query,callback);
 }; 
+
+module.exports.getViewrecipe = function(myrecipename,callback){
+    const query = { recipename:myrecipename };
+    recipemodels.find(query,callback);
+}; 

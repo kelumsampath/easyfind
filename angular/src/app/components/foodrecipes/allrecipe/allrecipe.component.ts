@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AllrecipeComponent implements OnInit {
   recipe:any;
-  heroes:any;
+  //heroes:any;
   imgurl:String;
   constructor(
     private authservice:AuthService,
@@ -19,10 +19,10 @@ export class AllrecipeComponent implements OnInit {
   ) {
     this.authservice.getAllRecipe().subscribe(res=>{
       if(res.state){
-        this.heroes = res.recipe;
+        this.recipe = res.recipe;
         this.imgurl = res.pic_url;
         //console.log("ds");
-        console.log(res.recipe);
+       // console.log(res.recipe);
         //this.recipe=res.recipe;
         //console.log(this.recipe);
       }
