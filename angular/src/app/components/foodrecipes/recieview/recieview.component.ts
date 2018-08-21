@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../service/auth.service';
 import { NgFlashMessageService } from 'ng-flash-messages';
+import { AuthGuard } from '../../../service/auth.guard'
 
 @Component({
   selector: 'app-recieview',
@@ -19,6 +20,7 @@ export class RecieviewComponent implements OnInit {
               private authservice:AuthService,
               private ngFlashMessageService: NgFlashMessageService,
               private router:Router,
+              private authguard:AuthGuard
   ) {
     this.myrecipe={
       recipename:this.activatedRoute.snapshot.paramMap.get('recipename')
@@ -73,6 +75,7 @@ export class RecieviewComponent implements OnInit {
   }
 
   like(){
+    if(this.authguard.canActivate()){
     this.authservice.likeRecipe(this.myrecipe.recipename).subscribe(res=>{
       if(res.state){
        this.Islike=true;
@@ -82,8 +85,10 @@ export class RecieviewComponent implements OnInit {
         }
     });
   }
+  }
 
   unlike(){
+    if(this.authguard.canActivate()){
     this.authservice.unlikeRecipe(this.myrecipe.recipename).subscribe(res=>{
       if(res.state){
       this.Islike=false;
@@ -93,6 +98,6 @@ export class RecieviewComponent implements OnInit {
         }
     });
   }
-  
+}
 
 }
