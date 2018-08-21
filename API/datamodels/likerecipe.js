@@ -25,3 +25,13 @@ module.exports.Isliked = function(likeData,callback){
      //likeData.save(callback);
   
  }
+
+ module.exports.deleteLikeData = function(likeData,callback){
+    //console.log(likeData.recipename);
+    //console.log(likeData.username);
+    const query={
+       $and: [{recipename : likeData.recipename}, {username : likeData.username}] 
+   }
+       likerecipemodel.remove(query,callback);  
+    
+}

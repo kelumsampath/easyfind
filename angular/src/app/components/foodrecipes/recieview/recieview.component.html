@@ -50,8 +50,11 @@
               <span class="glyphicon glyphicon-chevron-left"></span> Back
           </button>
           <iframe src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Flocalhost%3A4200%2Fallrecipe%2Fhot%2520dog&layout=button&size=large&mobile_iframe=true&width=73&height=28&appId" width="73" height="28" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-          <button class="btn btn-info btn-lg like" (click)="like()">
-              <span class="glyphicon glyphicon-thumbs-up"></span> Like
+          <button class="btn btn-info btn-lg liked" (click)="unlike()" *ngIf="Islike">
+              <span class="glyphicon glyphicon-thumbs-up"></span> Liked
+          </button>
+          <button class="btn btn-info btn-lg noliked" (click)="like()" *ngIf="Islike==false">
+              <span class="glyphicon glyphicon-thumbs-up"></span> Like 
           </button>
 
             

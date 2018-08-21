@@ -58,10 +58,12 @@ export class RecieviewComponent implements OnInit {
 
     this.authservice.checklike(this.myrecipe.recipename).subscribe(res=>{
       if(res.state){
-       console.log("liked");
+       //console.log("liked");
+       this.Islike=true;
       }
         else{
-          this.ngFlashMessageService.showFlashMessage({messages: ["NOT LIKED"],dismissible: true,timeout: 4000,type: 'danger'});
+         // this.ngFlashMessageService.showFlashMessage({messages: ["NOT LIKED"],dismissible: true,timeout: 4000,type: 'danger'});
+         this.Islike=false;
         }
     });
    }
@@ -71,14 +73,23 @@ export class RecieviewComponent implements OnInit {
   }
 
   like(){
-   
-   
     this.authservice.likeRecipe(this.myrecipe.recipename).subscribe(res=>{
       if(res.state){
-       //
+       this.Islike=true;
       }
         else{
-          this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: true,timeout: 4000,type: 'danger'});
+          this.ngFlashMessageService.showFlashMessage({messages: ['SOMETHING WENT WRONG!'],dismissible: true,timeout: 4000,type: 'danger'});
+        }
+    });
+  }
+
+  unlike(){
+    this.authservice.unlikeRecipe(this.myrecipe.recipename).subscribe(res=>{
+      if(res.state){
+      this.Islike=false;
+      }
+        else{
+          this.ngFlashMessageService.showFlashMessage({messages: ['SOMETHING WENT WRONG!'],dismissible: true,timeout: 4000,type: 'danger'});
         }
     });
   }

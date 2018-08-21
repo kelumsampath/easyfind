@@ -120,6 +120,19 @@ likeRecipe(recipename){
   headers.append('content-Type','application/json');
   return this.http.post("http://localhost:3000/foodrecipe/likerecipe",recipeData,{headers:headers}).map(res=>res.json());
 }
+
+unlikeRecipe(recipename){
+  const recipeData={
+    "recipename":recipename
+  }
+  let headers = new Headers();
+  this.fetchtoken();
+  //console.log(this.authtoken);
+  headers.append('Authorization',this.authtoken);
+  headers.append('content-Type','application/json');
+  return this.http.post("http://localhost:3000/foodrecipe/unlikerecipe",recipeData,{headers:headers}).map(res=>res.json());
+}
+
 checklike(recipename){
   const recipeData={
     "recipename":recipename

@@ -167,4 +167,27 @@ router.get('/',(req,res)=>{
    
   });
 
+  router.post('/unlikerecipe',token.verifytoken,(req,res)=>{
+    //console.log(req.body.recipename);
+    //console.log(req.user.username);
+    const likeData = new likerecipemodel({
+      username:req.body.recipename,
+      recipename:req.user.username
+    });
+    likerecipemodel.deleteLikeData(likeData,(err,user)=>{
+      if(err){
+          if (err.name === 'MongoError' && err.code === 11000) {
+             // console.log('There was a duplicate key error');
+             res.json({state:false,msg:"You already noliked!"}) 
+          }else{
+             res.json({state:false,msg:"Something Went wrong!"})
+          }
+        
+      }else{
+       // console.log(user);
+        res.json({state:true,msg:"unliked!"})
+      }
+    })
+  });
+
   module.exports = router;
