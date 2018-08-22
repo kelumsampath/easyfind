@@ -65,7 +65,7 @@ export class RecieviewComponent implements OnInit {
 
     this.authservice.checklike(this.myrecipe.recipename).subscribe(res=>{
       if(res.state){
-       //console.log("liked");
+        //console.log("liked");
        this.Islike=true;
       }
         else{
