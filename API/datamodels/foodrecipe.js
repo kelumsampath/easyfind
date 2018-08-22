@@ -29,7 +29,7 @@ module.exports.dbSave = function(regRecipe,callback){
 
 module.exports.getAllrecipe = function(dd,callback){
     const query = {};
-    recipemodels.find(query,callback);
+    recipemodels.find(query,callback).sort({"date":-1});
 }; 
 
 module.exports.getViewrecipe = function(myrecipename,callback){
