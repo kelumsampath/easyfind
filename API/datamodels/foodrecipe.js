@@ -17,7 +17,7 @@ const recepeSchema = new schema({
     description:{type:String,required:false},
     imageUrl:{type:String,required:false},
     likes:{type:Number,required:false,default:0},
-    date:{type: Number, default: Date.now}
+    date:{type: Date}
 });
 
 const recipemodels=module.exports = mongoose.model("recipemodels",recepeSchema);
