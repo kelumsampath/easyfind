@@ -16,6 +16,8 @@ export class RecieviewComponent implements OnInit {
   myrecipe:any;
   likeDeta:any;
   Islike:boolean;
+  likes:Number;
+  t:any;
   constructor(private activatedRoute: ActivatedRoute,
               private authservice:AuthService,
               private ngFlashMessageService: NgFlashMessageService,
@@ -31,6 +33,7 @@ export class RecieviewComponent implements OnInit {
     this.authservice.getviewRecipe(this.myrecipe).subscribe(res=>{
       if(res.state){
         this.recipe = res.recipe;
+        this.likes=this.recipe.likes;
         this.myrecipe={
           "author":this.recipe.username,
           "recipename":this.recipe.recipename,
@@ -45,9 +48,11 @@ export class RecieviewComponent implements OnInit {
           "catagory" :this.recipe.catagory,
           "description" :this.recipe.description,
           "imageUrl" :this.recipe.imageUrl,
-          "likes":"fill this" ,
+          "likes":this.likes,
           }
-        
+        this.t={
+          "likes":this.likes
+        }
         //console.log(myrecipe);
        /// console.log(this.recipe.recipename);
         //this.recipe=res.recipe;
@@ -60,7 +65,7 @@ export class RecieviewComponent implements OnInit {
 
     this.authservice.checklike(this.myrecipe.recipename).subscribe(res=>{
       if(res.state){
-       //console.log("liked");
+        //console.log("liked");
        this.Islike=true;
       }
         else{
@@ -74,11 +79,16 @@ export class RecieviewComponent implements OnInit {
   
   }
 
+  
+
   like(){
     if(this.authguard.canActivate()){
     this.authservice.likeRecipe(this.myrecipe.recipename).subscribe(res=>{
       if(res.state){
        this.Islike=true;
+       this.t={
+        "likes":res.likecount
+      }
       }
         else{
           this.ngFlashMessageService.showFlashMessage({messages: ['SOMETHING WENT WRONG!'],dismissible: true,timeout: 4000,type: 'danger'});
@@ -92,6 +102,9 @@ export class RecieviewComponent implements OnInit {
     this.authservice.unlikeRecipe(this.myrecipe.recipename).subscribe(res=>{
       if(res.state){
       this.Islike=false;
+      this.t={
+        "likes":res.likecount
+      }
       }
         else{
           this.ngFlashMessageService.showFlashMessage({messages: ['SOMETHING WENT WRONG!'],dismissible: true,timeout: 4000,type: 'danger'});

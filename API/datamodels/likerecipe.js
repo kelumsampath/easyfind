@@ -35,3 +35,12 @@ module.exports.Isliked = function(likeData,callback){
        likerecipemodel.remove(query,callback);  
     
 }
+
+module.exports.likecount = function(likeData,callback){
+    //console.log(likeData.recipename);
+    //console.log(likeData.username);
+    const query={recipename : likeData.recipename};
+    likerecipemodel.count(query,callback);  
+    //likeData.save(callback);
+ 
+}

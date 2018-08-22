@@ -15,7 +15,9 @@ const recepeSchema = new schema({
     rate:{type:String,required:false},
     catagory:{type:String,required:false},
     description:{type:String,required:false},
-    imageUrl:{type:String,required:false}
+    imageUrl:{type:String,required:false},
+    likes:{type:Number,required:false,default:0},
+    date:{type: Number, default: Date.now}
 });
 
 const recipemodels=module.exports = mongoose.model("recipemodels",recepeSchema);
@@ -33,4 +35,12 @@ module.exports.getAllrecipe = function(dd,callback){
 module.exports.getViewrecipe = function(myrecipename,callback){
     const query = { recipename:myrecipename };
     recipemodels.find(query,callback);
+}; 
+
+module.exports.updatelikes = function(likedetails,callback){
+    const query = { recipename:likedetails.recipename };
+    recipemodels.update(
+        query,
+        { $set: { "likes": likedetails.count } },callback
+     )
 }; 
