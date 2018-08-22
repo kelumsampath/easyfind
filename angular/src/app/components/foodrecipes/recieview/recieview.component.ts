@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../../../service/auth.service';
 import { NgFlashMessageService } from 'ng-flash-messages';
+import { AuthGuard } from '../../../service/auth.guard'
 
 @Component({
   selector: 'app-recieview',
@@ -13,10 +14,13 @@ export class RecieviewComponent implements OnInit {
   recipe:any;
   imgurl:String;
   myrecipe:any;
+  likeDeta:any;
+  Islike:boolean;
   constructor(private activatedRoute: ActivatedRoute,
               private authservice:AuthService,
               private ngFlashMessageService: NgFlashMessageService,
               private router:Router,
+              private authguard:AuthGuard
   ) {
     this.myrecipe={
       recipename:this.activatedRoute.snapshot.paramMap.get('recipename')
@@ -53,10 +57,47 @@ export class RecieviewComponent implements OnInit {
           this.ngFlashMessageService.showFlashMessage({messages: ["SERVER ERROR OCCUERED!"],dismissible: true,timeout: 4000,type: 'danger'});
         }
     });
+
+    this.authservice.checklike(this.myrecipe.recipename).subscribe(res=>{
+      if(res.state){
+       //console.log("liked");
+       this.Islike=true;
+      }
+        else{
+         // this.ngFlashMessageService.showFlashMessage({messages: ["NOT LIKED"],dismissible: true,timeout: 4000,type: 'danger'});
+         this.Islike=false;
+        }
+    });
    }
 
   ngOnInit() {
   
   }
+
+  like(){
+    if(this.authguard.canActivate()){
+    this.authservice.likeRecipe(this.myrecipe.recipename).subscribe(res=>{
+      if(res.state){
+       this.Islike=true;
+      }
+        else{
+          this.ngFlashMessageService.showFlashMessage({messages: ['SOMETHING WENT WRONG!'],dismissible: true,timeout: 4000,type: 'danger'});
+        }
+    });
+  }
+  }
+
+  unlike(){
+    if(this.authguard.canActivate()){
+    this.authservice.unlikeRecipe(this.myrecipe.recipename).subscribe(res=>{
+      if(res.state){
+      this.Islike=false;
+      }
+        else{
+          this.ngFlashMessageService.showFlashMessage({messages: ['SOMETHING WENT WRONG!'],dismissible: true,timeout: 4000,type: 'danger'});
+        }
+    });
+  }
+}
 
 }

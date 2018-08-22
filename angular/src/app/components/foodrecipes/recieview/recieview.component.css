@@ -15,9 +15,17 @@ img{
     height: 300px;
 }
 
-.like{
+.liked{
     margin-left: 5%;
+    background-color: green;
+}
+.noliked{
+    margin-left: 5%;
+    
 }
 .back{
     margin-right: 5%;
 }
+
+
+  
