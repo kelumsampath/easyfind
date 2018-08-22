@@ -120,8 +120,8 @@ router.get('/',(req,res)=>{
     //console.log(req.body.recipename);
     //console.log(req.user.username);
     const likeData = new likerecipemodel({
-      username:req.body.recipename,
-      recipename:req.user.username
+      recipename:req.body.recipename,
+      username:req.user.username
     });
     likerecipemodel.dbSave(likeData,(err,user)=>{
       if(err){
@@ -133,7 +133,29 @@ router.get('/',(req,res)=>{
           }
         
       }else{
-        res.json({state:true,msg:"liked!"})
+        
+        likerecipemodel.likecount(likeData,(err,count)=>{
+          if(err){
+            console.log(err);
+          }else{
+            
+            likedetails ={
+              "recipename":req.body.recipename,
+              "count":count
+            }
+            recipemodels.updatelikes(likedetails,(err,callback)=>{
+              if(err){
+                console.log("like not counted!");
+                res.json({state:false});
+              }else{
+                //console.log(callback);
+                res.json({state:true,likecount:count})
+              }
+            })
+          }
+        })
+        //console.log(likedetails.count);
+       
       }
     })
   });
@@ -142,8 +164,8 @@ router.get('/',(req,res)=>{
    // console.log(req.body.recipename);
     //console.log(req.user.username);
     const likeData = new likerecipemodel({
-      username:req.body.recipename,
-      recipename:req.user.username
+      recipename:req.body.recipename,
+      username:req.user.username
     });
     likerecipemodel.Isliked(likeData,(err,user)=>{
       if(err){
@@ -171,8 +193,8 @@ router.get('/',(req,res)=>{
     //console.log(req.body.recipename);
     //console.log(req.user.username);
     const likeData = new likerecipemodel({
-      username:req.body.recipename,
-      recipename:req.user.username
+      recipename:req.body.recipename,
+      username:req.user.username
     });
     likerecipemodel.deleteLikeData(likeData,(err,user)=>{
       if(err){
@@ -185,7 +207,26 @@ router.get('/',(req,res)=>{
         
       }else{
        // console.log(user);
-        res.json({state:true,msg:"unliked!"})
+       likerecipemodel.likecount(likeData,(err,count)=>{
+        if(err){
+          console.log(err);
+        }else{
+          likedetails ={
+            "recipename":req.body.recipename,
+            "count":count
+          }
+          recipemodels.updatelikes(likedetails,(err,callback)=>{
+            if(err){
+                console.log("like not counted!");
+                res.json({state:false});
+              }else{
+                //console.log(callback);
+                res.json({state:true,likecount:count})
+              }
+          })
+        }
+      })
+       // res.json({state:true,msg:"unliked!"})
       }
     })
   });
