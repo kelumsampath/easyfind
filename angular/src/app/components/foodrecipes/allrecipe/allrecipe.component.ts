@@ -12,11 +12,14 @@ export class AllrecipeComponent implements OnInit {
   recipe:any;
   //heroes:any;
   imgurl:String;
+  catogary:any;
   constructor(
     private authservice:AuthService,
     private ngFlashMessageService: NgFlashMessageService,
     private router:Router,
   ) {
+    this.catogary={
+      "mycatogory":"all"}
     this.authservice.getAllRecipe().subscribe(res=>{
       if(res.state){
         this.recipe = res.recipe;
@@ -38,5 +41,27 @@ export class AllrecipeComponent implements OnInit {
  // title = 'Tour of Heroes';
  // heroes = ['Windstorm', 'Bombasto', 'Magneta'];
  // myHero = this.heroes[0];
+ all(){
+  this.catogary={
+    "mycatogory":"all"}
+  
+ }
+ riceNcurry(){
+  this.catogary={
+    "mycatogory":"Rice and Curry"}
+ }
+ cakes(){
+  this.catogary={
+    "mycatogory":"Cakes"}
+ }
+ shortmeals(){
+  this.catogary={
+    "mycatogory":"Short Meal"}
+ }
+ drinks(){
+  this.catogary={
+    "mycatogory":"Drinks"}
+ }
+
  
 }

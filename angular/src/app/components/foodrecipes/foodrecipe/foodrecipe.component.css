@@ -16,7 +16,7 @@ img {
    
 }
  
-img:hover {
+.nav_image:hover {
     border-radius: 60%;
     background-color:beige;
 }

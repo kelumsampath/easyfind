@@ -1,9 +1,21 @@
-<app-foodrecipe></app-foodrecipe>
 
+
+<div id="menu-outer">
+  <div class="table">
+    <table id="horizontal-list">
+      <td><a (click)="all()" active><img src="../../../assets/images/navbar/rice.jpg" alt="list item 1" class="nav_image" /></a></td>
+      <td><a (click)="riceNcurry()"><img src="../../../assets/images/navbar/pastry.jpg" alt="list item 2" class="nav_image" /></a></td>
+      <td><a (click)="cakes()"><img src="../../../assets/images/navbar/cake.jpg" alt="list item 3" class="nav_image" /></a></td>
+      <td><a (click)="shortmeals()"><img src="../../../assets/images/navbar/rice.jpg" alt="list item 4" class="nav_image" /></a></td>
+      <td><a (click)="drinks()"><img src="../../../assets/images/navbar/rice.jpg" alt="list item 4" class="nav_image" /></a></td>
+      <td><a [routerLink]="['/addrecipe']"><img src="../../../assets/images/navbar/rice.jpg" alt="list item 4" class="nav_image" /></a></td>
+    </table>
+  </div>
+</div>
       
         
         <ul *ngFor="let recipies of recipe;let i = index" [attr.data-index]="i">
-           <li>
+           <li *ngIf="catogary.mycatogory==recipies.catagory ">
              <a [routerLink]="['/allrecipe',recipies.recipename]">
              <div id="menu">
              <img src="{{ recipies.imageUrl }}" id="pic" alt="" height="100px">
@@ -12,4 +24,13 @@
             </div>
             </a>
            </li>
+           <li *ngIf="catogary.mycatogory=='all'">
+            <a [routerLink]="['/allrecipe',recipies.recipename]">
+            <div id="menu">
+            <img src="{{ recipies.imageUrl }}" id="pic" alt="" height="100px">
+            <h1> {{ recipies.recipename }}</h1>
+            {{ recipies.description  }}
+           </div>
+           </a>
+          </li>
           </ul>

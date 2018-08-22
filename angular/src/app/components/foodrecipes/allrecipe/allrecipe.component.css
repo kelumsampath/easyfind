@@ -1,7 +1,3 @@
-table{
-    width: 100%;
-    
-}
 
 #menu{
     width: 80%;
@@ -19,4 +15,34 @@ img {
     float: left;
     height: 190px;
     width: 300px;
+}
+/*nav bar*/
+.nav_image {
+    border-radius: 50%;
+    width:150px; 
+    height: 150px;
+    color: white;
+    padding: 20px;
+  }
+
+.nav_image:hover {
+    border-radius: 60%;
+    background-color:beige;
+}
+
+
+#menu-outer {
+    margin-top: 0px;
+	height: auto;
+    
+    
+}
+
+
+
+#horizontal-list{
+    width: 100%;
+    text-align: center;
+    background-color:#111111;
+    
 }
