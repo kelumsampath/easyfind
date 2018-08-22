@@ -28,6 +28,7 @@ export class RecieviewComponent implements OnInit {
       if(res.state){
         this.recipe = res.recipe;
         this.myrecipe={
+          "author":this.recipe.username,
           "recipename":this.recipe.recipename,
           "ingredients":this.recipe.ingredients,
           "directions" :this.recipe.directions,
@@ -39,13 +40,14 @@ export class RecieviewComponent implements OnInit {
           "rate" :this.recipe.rate,
           "catagory" :this.recipe.catagory,
           "description" :this.recipe.description,
-          "fileToUpload" :this.recipe.pic_url
+          "imageUrl" :this.recipe.imageUrl,
+          "likes":"fill this" ,
           }
         
         //console.log(myrecipe);
        /// console.log(this.recipe.recipename);
         //this.recipe=res.recipe;
-        //console.log(res.recipe);
+        //console.log(this.myrecipe.directions);
       }
         else{
           this.ngFlashMessageService.showFlashMessage({messages: ["SERVER ERROR OCCUERED!"],dismissible: true,timeout: 4000,type: 'danger'});
