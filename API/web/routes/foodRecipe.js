@@ -2,6 +2,7 @@ const express = require('express');
 const cloudinary = require('cloudinary');
 const multer  = require('multer');
 const token = require('../../config/token');
+const date = require('date-and-time');
 const recipemodels = require('../../datamodels/foodrecipe');
 const likerecipemodel= require('../../datamodels/likerecipe');
 const storage = multer.diskStorage({ 
@@ -44,6 +45,7 @@ router.get('/',(req,res)=>{
   router.post('/addrecipe',upload.single('foodimg'),token.verifyfiletoken,(req,res)=>{
    // console.log(req.body.recipename);
     //console.log(req.user.username);
+    let now = new Date();
     cloudinary.uploader.upload(req.file.path,function(result) { 
       const img =cloudinary.image(result.public_id, { alt: "Sample Image" });
       const link = img.split("'");
@@ -60,7 +62,8 @@ router.get('/',(req,res)=>{
       rate:req.body.rate,
       catagory:req.body.catagory,
       description:req.body.description,
-      imageUrl:link[1]
+      imageUrl:link[1],
+      date:date.format(now, 'YYYY/MM/DD HH:mm:ss')
     });
     recipemodels.dbSave(regRecipe,(err,user)=>{
       if(err){

@@ -17,7 +17,7 @@ const recepeSchema = new schema({
     description:{type:String,required:false},
     imageUrl:{type:String,required:false},
     likes:{type:Number,required:false,default:0},
-    date:{type: Number, default: Date.now}
+    date:{type: Date}
 });
 
 const recipemodels=module.exports = mongoose.model("recipemodels",recepeSchema);
@@ -29,7 +29,7 @@ module.exports.dbSave = function(regRecipe,callback){
 
 module.exports.getAllrecipe = function(dd,callback){
     const query = {};
-    recipemodels.find(query,callback);
+    recipemodels.find(query,callback).sort({"date":-1});
 }; 
 
 module.exports.getViewrecipe = function(myrecipename,callback){
