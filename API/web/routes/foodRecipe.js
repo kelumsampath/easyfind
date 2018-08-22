@@ -133,10 +133,12 @@ router.get('/',(req,res)=>{
           }
         
       }else{
+        
         likerecipemodel.likecount(likeData,(err,count)=>{
           if(err){
             console.log(err);
           }else{
+            
             likedetails ={
               "recipename":req.body.recipename,
               "count":count
@@ -144,13 +146,16 @@ router.get('/',(req,res)=>{
             recipemodels.updatelikes(likedetails,(err,callback)=>{
               if(err){
                 console.log("like not counted!");
+                res.json({state:false});
               }else{
                 //console.log(callback);
+                res.json({state:true,likecount:count})
               }
             })
           }
         })
-        res.json({state:true,msg:"liked!"})
+        //console.log(likedetails.count);
+       
       }
     })
   });
@@ -212,14 +217,16 @@ router.get('/',(req,res)=>{
           }
           recipemodels.updatelikes(likedetails,(err,callback)=>{
             if(err){
-              console.log("like not counted!");
-            }else{
-              //console.log(callback);
-            }
+                console.log("like not counted!");
+                res.json({state:false});
+              }else{
+                //console.log(callback);
+                res.json({state:true,likecount:count})
+              }
           })
         }
       })
-        res.json({state:true,msg:"unliked!"})
+       // res.json({state:true,msg:"unliked!"})
       }
     })
   });
