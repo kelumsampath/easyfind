@@ -16,21 +16,21 @@
         
         <ul *ngFor="let recipies of recipe;let i = index" [attr.data-index]="i">
            <li *ngIf="catogary.mycatogory==recipies.catagory ">
-             <a [routerLink]="['/allrecipe',recipies.recipename]">
+             <button [routerLink]="['/allrecipe',recipies.recipename]">
              <div id="menu">
              <img src="{{ recipies.imageUrl }}" id="pic" alt="" height="100px">
              <h1> {{ recipies.recipename }}</h1>
              {{ recipies.description  }}
             </div>
-            </a>
+             </button>
            </li>
            <li *ngIf="catogary.mycatogory=='all'">
-            <a [routerLink]="['/allrecipe',recipies.recipename]">
+            <button [routerLink]="['/allrecipe',recipies.recipename]">
             <div id="menu">
             <img src="{{ recipies.imageUrl }}" id="pic" alt="" height="100px">
             <h1> {{ recipies.recipename }}</h1>
             {{ recipies.description  }}
            </div>
-           </a>
+            </button>
           </li>
           </ul>
