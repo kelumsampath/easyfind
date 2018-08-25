@@ -30,7 +30,12 @@ module.exports.dbSave = function(regRecipe,callback){
 module.exports.getAllrecipe = function(dd,callback){
     const query = {};
     recipemodels.find(query,callback).sort({"date":-1});
-}; 
+};
+
+module.exports.getmostliked = function(dd,callback){
+    const query = {};
+    recipemodels.find(query,callback).sort({"likes":-1}).limit(5);
+};
 
 module.exports.getViewrecipe = function(myrecipename,callback){
     const query = { recipename:myrecipename };
