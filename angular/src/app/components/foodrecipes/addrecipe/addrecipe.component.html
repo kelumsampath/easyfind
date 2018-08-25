@@ -1,5 +1,5 @@
 
-<app-foodrecipe></app-foodrecipe>
+
 <div class="container">
   <form class="form" #form=ngForm (submit)="addrecipe()">
       <fieldset>
@@ -79,7 +79,9 @@
   
   
           <br><br>
-  
+          <button [routerLink]="['/foodrecipe']" class="btn btn-info btn-lg back">
+            <span class="glyphicon glyphicon-chevron-left"></span> Back
+        </button>
         <button type="submit" class="btn btn-success btn-lg" [disabled]="!form.valid">Register</button>
         <button type="reset" class="btn btn-secondary btn-lg">Reset</button>
       </fieldset>
