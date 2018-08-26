@@ -17,7 +17,7 @@ export class RecieviewComponent implements OnInit {
   likeDeta:any;
   Islike:boolean;
   likes:Number;
-  t:any;
+  
   constructor(private activatedRoute: ActivatedRoute,
               private authservice:AuthService,
               private ngFlashMessageService: NgFlashMessageService,
@@ -50,9 +50,7 @@ export class RecieviewComponent implements OnInit {
           "imageUrl" :this.recipe.imageUrl,
           "likes":this.likes,
           }
-        this.t={
-          "likes":this.likes
-        }
+        
         //console.log(myrecipe);
        /// console.log(this.recipe.recipename);
         //this.recipe=res.recipe;
@@ -86,9 +84,8 @@ export class RecieviewComponent implements OnInit {
     this.authservice.likeRecipe(this.myrecipe.recipename).subscribe(res=>{
       if(res.state){
        this.Islike=true;
-       this.t={
-        "likes":res.likecount
-      }
+      
+      this.likes=res.likecount;
       }
         else{
           this.ngFlashMessageService.showFlashMessage({messages: ['SOMETHING WENT WRONG!'],dismissible: true,timeout: 4000,type: 'danger'});
@@ -102,9 +99,8 @@ export class RecieviewComponent implements OnInit {
     this.authservice.unlikeRecipe(this.myrecipe.recipename).subscribe(res=>{
       if(res.state){
       this.Islike=false;
-      this.t={
-        "likes":res.likecount
-      }
+      
+      this.likes=res.likecount;
       }
         else{
           this.ngFlashMessageService.showFlashMessage({messages: ['SOMETHING WENT WRONG!'],dismissible: true,timeout: 4000,type: 'danger'});
