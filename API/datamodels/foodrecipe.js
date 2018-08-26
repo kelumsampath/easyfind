@@ -49,3 +49,9 @@ module.exports.updatelikes = function(likedetails,callback){
         { $set: { "likes": likedetails.count } },callback
      )
 }; 
+
+
+module.exports.getUserRecipe = function(username,callback){
+    const query = {username:username};
+    recipemodels.find(query,callback).sort({"date":-1});
+};

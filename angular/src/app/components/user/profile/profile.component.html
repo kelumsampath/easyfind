@@ -1,66 +1,34 @@
-<!--<div *ngIf="user" class="container">
-
+<div *ngIf="user" class="container">
+  
+  
+  <div ><img src="{{user.prof_pic_link}}" alt="{{user.prof_pic_alt}}" class="profpic"></div>
   <div><h1>{{user.fullname}}</h1></div>
-  <div>{{user.username}}</div>
-  <div>{{user.email}}</div>
-  <div>{{user.phoneno}}</div>
-  <div>{{user.prof_pic_alt}}</div>
-  <div></div>
-  <div><img src="{{user.prof_pic_link}}" alt="{{user.prof_pic_alt}}"></div>
-</div>-->
-<div class="block">
-  <div class="user">
-    <img src={{user.prof_pic_link}} class="avatar" alt="{{user.prof_pic_alt}}" />
-
-    <div class="usr-info">
-      <div class="rHa">
-        <div class="Yia">
-          <div class="gZa">
-            <div class="rna KXa Xia" guidedhelpid="profile_name"><b>{{user.username}}</b></div>
-          </div>
-          <div class="EXa Plb">
-
-          </div>
-        </div>
-        <div class="Yia Frc VQc"><div class="Nyb">
-          <div class="Ny">
-            <span class="J9a"><b>full name:</b></span>
-            <span class="K9a">{{user.fullname}}</span>
-          </div>
-          <div class="wyb FVb">
-            <div class="Ny">
-              <span class="J9a"><b>Email:</b></span>
-              <span class="K9a">{{user.email}}</span>
-            </div>
-            <div class="Ny">
-                <span class="J9a"><b>Phone Number:</b></span>
-                <span class="K9a">{{user.phoneno}}</span>
-              </div>
-          </div>
-        </div>
+  <hr>
+  <table>
+    <tr>
+    <td><h5>Full name: {{user.fullname}} </h5></td>
+    <td><h5>User name: {{user.username}} </h5></td>
+  </tr>
+  <tr>
+    <td><h5>Email: {{user.email}}</h5></td>
+    <td><h5>Phone Number: {{user.phoneno}}</h5></td>
+  </tr>
+  </table> 
+  <hr>
+  <h4>My Recipes</h4>
+  <ul *ngFor="let recipies of recipe;let i = index" [attr.data-index]="i" class="add">
+      <li>
+       <button [routerLink]="['/profile',recipies.recipename]" class="add">
+       <div id="menu">
+       <img src="{{ recipies.imageUrl }}" id="menupic" alt="">
+       <h1> {{ recipies.recipename }}</h1>
+      <h4>likes:{{ recipies.likes  }}</h4>
+      <h4>Status: approved</h4>
       </div>
-    </div>
-    
-      
-
-      
-    </div>
-  </div>
-
-  <div class="nav">
-    <div><span class="wrap">
-      <a href="#">About</a>
-      <b>•</b>
-      <a href="#" class="current-nav">Posts</a>
-      <b>•</b>
-        <a href="#">Photos</a>
-        <b>•</b>
-        <a href="#">YouTube</a>
-        <b>•</b>
-        <a href="#">+1's</a>
-        <b>•</b>
-        <a href="#">Reviews</a>
-      </span>
-    </div>
-  </div>
+       </button>
+     </li>
+     </ul>
+   
 </div>
+
+

@@ -125,7 +125,7 @@ router.get('/',(req,res)=>{
     recipemodels.getViewrecipe(req.body.recipename,(err,recipe)=>{
       if(err) {
         //throw err;
-        console.log("Allrecipe data retrive error");
+        //console.log("Allrecipe data retrive error");
         res.json({state:false});
        
       }
@@ -158,6 +158,7 @@ router.get('/',(req,res)=>{
         likerecipemodel.likecount(likeData,(err,count)=>{
           if(err){
             console.log(err);
+            res.json({state:false});
           }else{
             
             likedetails ={
@@ -166,7 +167,7 @@ router.get('/',(req,res)=>{
             }
             recipemodels.updatelikes(likedetails,(err,callback)=>{
               if(err){
-                console.log("like not counted!");
+                //console.log("like not counted!");
                 res.json({state:false});
               }else{
                 //console.log(callback);
@@ -250,6 +251,20 @@ router.get('/',(req,res)=>{
        // res.json({state:true,msg:"unliked!"})
       }
     })
+  });
+
+  
+  router.post('/getuserrecipies',token.verifytoken,(req,res)=>{
+   
+    recipemodels.getUserRecipe(req.user.username,(err,recipe)=>{
+      if(err) {
+        res.json({state:false});
+      }
+      else{
+        res.json({state:true,recipe:recipe});
+      }
+    })
+    
   });
 
   module.exports = router;

@@ -151,4 +151,12 @@ checklike(recipename){
   return this.http.post("http://localhost:3000/foodrecipe/checklike",recipeData,{headers:headers}).map(res=>res.json());
 }
 
+getuserrecipes(myusername){
+  let headers = new Headers();
+  this.fetchtoken();
+  headers.append('Authorization',this.authtoken);
+  headers.append('content-Type','application/json');
+  return this.http.post("http://localhost:3000/foodrecipe/getuserrecipies",myusername,{headers:headers}).map(res=>res.json());
+}
+
 }
