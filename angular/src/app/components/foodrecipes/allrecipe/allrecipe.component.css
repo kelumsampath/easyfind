@@ -1,6 +1,6 @@
 
-button{
-    width: 80%;
+.add{
+    width: 100%;
     height: 200px;
     box-align:"left";
     border-style: solid;
@@ -46,4 +46,36 @@ img {
     text-align: center;
     background-color:#111111;
     
+}
+#menuitem{
+    float: left;
+    width: 75%;
+    padding: 10px;
+}
+
+#sidebar{
+    float: right;
+    width: 25%;
+    padding: 10px;
+}
+.sidecontent{
+    background-color: aqua;
+}
+.headline{
+    text-align: center;
+}
+#sidebarpic{
+    height: 35px;
+    width: 35px;
+}
+
+.sideadd{
+    
+    width: 90%;
+    height: 80px;
+    
+    border-style: solid;
+    border-color: red; 
+    text-align: center;
+    background-color: blue;
 }

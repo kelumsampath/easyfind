@@ -103,6 +103,12 @@ getAllRecipe(){
   return this.http.post("http://localhost:3000/foodrecipe/getallrecipe",{headers:headers}).map(res=>res.json());
 }
 
+getMostliked(){
+  let headers = new Headers();
+  headers.append('content-Type','application/json');
+  return this.http.post("http://localhost:3000/foodrecipe/getmostliked",{headers:headers}).map(res=>res.json());
+}
+
 getviewRecipe(recipename){
   let headers = new Headers();
   headers.append('content-Type','application/json');

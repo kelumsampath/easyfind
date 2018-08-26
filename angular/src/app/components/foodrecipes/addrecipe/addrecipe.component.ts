@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
 import { NgFlashMessageService } from 'ng-flash-messages';
 import { Router } from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-addrecipe',
@@ -30,6 +31,7 @@ export class AddrecipeComponent implements OnInit {
     private authservice:AuthService,
     private ngFlashMessageService: NgFlashMessageService,
     private router:Router,
+    private _location: Location
   ) { }
 
   ngOnInit() {
@@ -77,6 +79,7 @@ handleFileInput(file:FileList){
   }
   reader.readAsDataURL(this.fileToUpload);
 }
+
 
 
 }
