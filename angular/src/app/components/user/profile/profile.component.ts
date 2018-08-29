@@ -66,7 +66,7 @@ export class ProfileComponent implements OnInit {
     this.authservice.editUser(newdata).subscribe(res=>{
       if(res.state){
         this.editData=false;
-      //this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: true,timeout: 4000,type: 'success'});
+      this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: true,timeout: 4000,type: 'success'});
       
       this.router.navigate(['/..']);
       }

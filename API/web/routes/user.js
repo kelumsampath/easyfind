@@ -178,7 +178,7 @@ router.post('/updateprofile',token.verifytoken,(req,res)=>{
     if(err) 
     res.json({state:false,msg:"Data not updated"});
     else{
-      res.json({state:true});
+      res.json({state:true,msg:"Profile updated!"});
     }
   })
   
