@@ -42,7 +42,7 @@ export class AllrecipeComponent implements OnInit {
         //console.log("ds");
        // console.log(res.recipe);
         //this.recipe=res.recipe;
-        console.log(this.sidebarrecipe);
+        //console.log(this.sidebarrecipe);
       }
         else{
           this.ngFlashMessageService.showFlashMessage({messages: ["SERVER ERROR OCCUERED!"],dismissible: true,timeout: 4000,type: 'danger'});

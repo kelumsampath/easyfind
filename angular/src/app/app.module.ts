@@ -30,7 +30,8 @@ const applicationRoutes:Routes = [
   {path:'test',component:TestComponent},
   {path:'addrecipe',component:AddrecipeComponent, canActivate: [AuthGuard]},
   {path:'allrecipe',component:AllrecipeComponent},
-  {path:'allrecipe/:recipename',component:RecieviewComponent}
+  {path:'allrecipe/:recipename',component:RecieviewComponent},
+  {path:'profile/:recipename',component:RecieviewComponent}
 ];
 
 @NgModule({

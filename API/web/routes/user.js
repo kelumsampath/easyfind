@@ -76,7 +76,7 @@ router.post('/login',(req,res)=>{
           phoneno:user.phoneno,
           password:user.password,
           __v: user.__v };
-      const newtoken = jwt.sign(obj,token.secrete,{expiresIn:86400},(err,newtoken)=>{
+      const newtoken = jwt.sign(obj,token.secrete,(err,newtoken)=>{
         if(err) {throw err;}
         else{
           const newtoken2 = new tokenmodels({
@@ -118,24 +118,25 @@ router.get('/profile',token.verifytoken,(req,res)=>{
  // var userdata = req.user;
   //console.log(userdata.username);
   datamodelds.getUserDetails(req.user.username,function(err,user){
-    if(err) {throw err;
+    if(err) {//throw err;
     //console.log(user.email);
+    res.json({state:false});
     }else{
     const img =cloudinary.image(user.profpic_cloud_id, { alt: "Sample Image" });
     const link = img.split("'");
     //console.log(link[1]);
-    const loggeduser = { _id: user._id,
-      fullname:user.fullname,
-      username:user.username,
-      email:user.email,
-      phoneno:user.phoneno,
-      password:user.password,
-      profpic_cloud_id:user.profpic_cloud_id,
-      prof_pic_link:link[1],
-      prof_pic_alt:link[3],
-      __v: user.__v };
+    const loggeduser = { "_id": user._id,
+      "fullname":user.fullname,
+      "username":user.username,
+      "email":user.email,
+      "phoneno":user.phoneno,
+      "password":user.password,
+      "profpic_cloud_id":user.profpic_cloud_id,
+      "prof_pic_link":link[1],
+      "prof_pic_alt":link[3],
+      "__v": user.__v };
 
-    res.json(loggeduser);
+    res.json({state:true,loggeduser:loggeduser});
 
 
     }
