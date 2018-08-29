@@ -13,10 +13,10 @@
   </div>
 </div>
       
-        
+        <div id="menuitem">
         <ul *ngFor="let recipies of recipe;let i = index" [attr.data-index]="i">
            <li *ngIf="catogary.mycatogory==recipies.catagory ">
-             <button [routerLink]="['/allrecipe',recipies.recipename]">
+             <button [routerLink]="['/allrecipe',recipies.recipename]" class="add">
              <div id="menu">
              <img src="{{ recipies.imageUrl }}" id="pic" alt="" height="100px">
              <h1> {{ recipies.recipename }}</h1>
@@ -25,7 +25,7 @@
              </button>
            </li>
            <li *ngIf="catogary.mycatogory=='all'">
-            <button [routerLink]="['/allrecipe',recipies.recipename]">
+            <button [routerLink]="['/allrecipe',recipies.recipename]" class="add">
             <div id="menu">
             <img src="{{ recipies.imageUrl }}" id="pic" alt="" height="100px">
             <h1> {{ recipies.recipename }}</h1>
@@ -34,3 +34,21 @@
             </button>
           </li>
           </ul>
+        </div>
+
+        <div id="sidebar">
+          <div class="sidecontent">
+              <h2 class='headline'>Most Popular Recipes of week</h2>
+              <ul *ngFor="let recipies of sidebarrecipe;let i = index" [attr.data-index]="i">
+              <li >
+                  <button [routerLink]="['/allrecipe',recipies.recipename]" class="sideadd">
+                  <div id="sidebarmenu">
+                  <img src="{{ recipies.imageUrl }}" id="sidebarpic" alt="" height="100px">
+                  <h1> {{ recipies.recipename }}</h1>
+                  likes: {{ recipies.likes  }}
+                 </div>
+                  </button>
+                </li>
+              </ul>
+          </div>
+        </div>
