@@ -159,4 +159,11 @@ getuserrecipes(myusername){
   return this.http.post("http://localhost:3000/foodrecipe/getuserrecipies",myusername,{headers:headers}).map(res=>res.json());
 }
 
+editUser(editData){
+  let headers = new Headers();
+  this.fetchtoken();
+  headers.append('Authorization',this.authtoken);
+  headers.append('content-Type','application/json');
+  return this.http.post("http://localhost:3000/user/updateprofile",editData,{headers:headers}).map(res=>res.json());
+}
 }

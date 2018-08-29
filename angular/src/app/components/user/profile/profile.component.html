@@ -2,9 +2,10 @@
   
   
   <div ><img src="{{user.prof_pic_link}}" alt="{{user.prof_pic_alt}}" class="profpic"></div>
-  <div><h1>{{user.fullname}}</h1></div>
+  <div><h1>{{user.username}}</h1></div>
   <hr>
-  <table>
+  <div *ngIf="editData==false">
+  <table >
     <tr>
     <td><h5>Full name: {{user.fullname}} </h5></td>
     <td><h5>User name: {{user.username}} </h5></td>
@@ -13,8 +14,27 @@
     <td><h5>Email: {{user.email}}</h5></td>
     <td><h5>Phone Number: {{user.phoneno}}</h5></td>
   </tr>
+  
   </table> 
+  <button (click)="editform()" class="btn btn-info btn-lg">Edit</button>
+</div>
+<div *ngIf="editData==true">
+  <table >
+    <tr>
+    <td><h5>Full name: <input type="text" name="fullname" placeholder="{{user.fullname}}" [(ngModel)]="fullname" > </h5></td>
+    <td><h5>User name: {{user.username}} </h5></td>
+  </tr>
+  <tr>
+    <td><h5>Email:  <input type="email" name="email" placeholder="{{user.email}}" [(ngModel)]="email" > </h5></td>
+    <td><h5>Phone Number: <input type="number" name="phoneno" placeholder="{{user.phoneno}}" [(ngModel)]="phoneno" > </h5></td>
+  </tr>
+ 
+  </table>
+  <button (click)="saveform()" class="btn btn-success btn-lg">Save</button>
+  <button (click)="cancel()" class="btn btn-default btn-lg">Cancel</button> 
+</div>
   <hr>
+
   <h4>My Recipes</h4>
   <ul *ngFor="let recipies of recipe;let i = index" [attr.data-index]="i" class="add">
       <li>

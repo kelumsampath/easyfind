@@ -164,7 +164,26 @@ router.get('/logout',token.verifytoken,(req,res)=>{
 });
 
 
+router.post('/updateprofile',token.verifytoken,(req,res)=>{
+ // console.log(req.body.fullname);
+  //console.log(req.user);
+  const updatedata={
+    username:req.user.username,
+    fullname:req.body.fullname,
+    email:req.body.email,
+    phoneno:req.body.phoneno
+  }
+ // console.log(updatedata);
+  datamodelds.updateUser(updatedata,(err,rep)=>{
+    if(err) 
+    res.json({state:false,msg:"Data not updated"});
+    else{
+      res.json({state:true});
+    }
+  })
+  
 
+});
 
 
 module.exports = router;
