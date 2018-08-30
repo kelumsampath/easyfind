@@ -186,4 +186,34 @@ router.post('/updateprofile',token.verifytoken,(req,res)=>{
 });
 
 
+router.post('/profpicchange',upload.single('editprofpic'),token.verifyfiletoken,(req,res)=>{
+ //console.log(req.user);
+ //console.log("dsc");
+ datamodelds.getUserDetails(req.user.username,(err,user)=>{
+   if(err){
+    res.json({state:false});
+   }else{
+     const oldpicid=user.profpic_cloud_id;
+     
+      cloudinary.uploader.upload(req.file.path,function(result) {
+        const picupdatedata={
+          username:req.user.username,
+          profpic_cloud_id:result.public_id
+        }
+        datamodelds.piceditidsave(picupdatedata,(err,sucess)=>{
+          if(err){
+            res.json({state:false,msg:"server error!"}); 
+          }else{
+            cloudinary.uploader.destroy(oldpicid, function(result) {
+
+            });
+            res.json({state:true,msg:"Profile picture changed!"});
+          }
+        });
+      }); 
+   }
+ })
+ 
+});
+
 module.exports = router;

@@ -1,8 +1,8 @@
 <div *ngIf="user" class="container">
   
-  
-  <div ><img src="{{user.prof_pic_link}}" alt="{{user.prof_pic_alt}}" class="profpic"></div>
   <div><h1>{{user.username}}</h1></div>
+  <div ><img src="{{user.prof_pic_link}}" alt="{{user.prof_pic_alt}}" class="profpic"></div>
+  <input type="file" (change)="profpic($event.target.files)" value="choose pic" id="imge">
   <hr>
   <div *ngIf="editData==false">
   <table >

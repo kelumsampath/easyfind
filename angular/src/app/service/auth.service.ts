@@ -166,4 +166,14 @@ editUser(editData){
   headers.append('content-Type','application/json');
   return this.http.post("http://localhost:3000/user/updateprofile",editData,{headers:headers}).map(res=>res.json());
 }
+
+editimage(image){
+  
+  const token = localStorage.getItem("tokenid");
+  const formData: FormData = new FormData();
+  formData.append('Authorization',token);
+  formData.append('editprofpic', image.editimage,image.editimage.name);
+  return this.http.post("http://localhost:3000/user/profpicchange", formData).map(res=>res.json()); 
+};
+
 }
