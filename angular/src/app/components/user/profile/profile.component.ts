@@ -18,6 +18,7 @@ export class ProfileComponent implements OnInit {
   fullname:String;
   email:String;
   phoneno:Number;
+  editimage:File;
   constructor(
     private authservice : AuthService,
     private ngFlashMessageService: NgFlashMessageService,
@@ -77,6 +78,25 @@ export class ProfileComponent implements OnInit {
       }
     });
     
+  }
+  
+  profpic(file:FileList){
+    const image={
+      editimage:file.item(0)
+    }
+    this.authservice.editimage(image).subscribe(res=>{
+      if(res.state){
+       
+      this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: true,timeout: 4000,type: 'success'});
+      //console.log("ela");
+      this.router.navigate(['/..']);
+      }
+      else{
+      //console.log(res.msg);
+      this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: false,timeout: 4000,type: 'danger'});
+      
+      }
+    });
   }
 
 }

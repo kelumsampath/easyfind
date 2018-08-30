@@ -74,4 +74,21 @@ module.exports.updateUser = function(upadatedata,callback){
 		},callback
 	)
 }
+
+module.exports.piceditidsave = function(picupdatedata,callback){
+    datamodels.update
+	(
+		{
+			username : picupdatedata.username
+		},
+		{
+			$set :
+			{
+				profpic_cloud_id : picupdatedata.profpic_cloud_id
+			}
+		},callback
+	)
+}
+
+
 module.exports.searchUser;
