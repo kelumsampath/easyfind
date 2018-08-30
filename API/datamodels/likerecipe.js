@@ -36,6 +36,10 @@ module.exports.Isliked = function(likeData,callback){
     
 }
 
+module.exports.deletelikebyrecipe = function(recipedata,callback){
+    const query= {recipename : recipedata.recipename} 
+       likerecipemodel.remove(query,callback);     
+}
 module.exports.likecount = function(likeData,callback){
     //console.log(likeData.recipename);
     //console.log(likeData.username);
@@ -44,3 +48,10 @@ module.exports.likecount = function(likeData,callback){
     //likeData.save(callback);
  
 }
+
+module.exports.deleterecipe = function(recipedata,callback){
+    const query={
+        $and: [{recipename : recipedata.recipename}, {username : recipedata.username}] }
+    likerecipemodel.remove(query,callback);    
+    
+};

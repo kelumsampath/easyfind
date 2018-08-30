@@ -57,6 +57,9 @@
               <span class="glyphicon glyphicon-thumbs-up"></span> Like 
           </button>
 
-            
+            <div  *ngIf="authservice.loggedIn()">
+              <br>
+              <button (click)="deleterecipe()">Delete this Recipe</button>
+            </div>
   </div>
 </div>

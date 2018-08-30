@@ -62,6 +62,7 @@ router.get('/',(req,res)=>{
       rate:req.body.rate,
       catagory:req.body.catagory,
       description:req.body.description,
+      image_id:result.public_id,
       imageUrl:link[1],
       date:date.format(now, 'YYYY/MM/DD HH:mm:ss')
     });
@@ -88,7 +89,7 @@ router.get('/',(req,res)=>{
     recipemodels.getAllrecipe("csc",(err,recipe)=>{
       if(err) {
         //throw err;
-        console.log("Allrecipe data retrive error");
+        //console.log("Allrecipe data retrive error");
         res.json({state:false});
        
       }
@@ -105,7 +106,7 @@ router.get('/',(req,res)=>{
     recipemodels.getmostliked("csc",(err,recipe)=>{
       if(err) {
         //throw err;
-        console.log("Allrecipe data retrive error");
+        //console.log("Allrecipe data retrive error");
         res.json({state:false});
        
       }
@@ -157,7 +158,7 @@ router.get('/',(req,res)=>{
         
         likerecipemodel.likecount(likeData,(err,count)=>{
           if(err){
-            console.log(err);
+            //console.log(err);
             res.json({state:false});
           }else{
             
@@ -185,10 +186,10 @@ router.get('/',(req,res)=>{
   router.post('/checklike',token.verifytoken2,(req,res)=>{
    // console.log(req.body.recipename);
     //console.log(req.user.username);
-    const likeData = new likerecipemodel({
+    const likeData = {
       recipename:req.body.recipename,
       username:req.user.username
-    });
+    };
     likerecipemodel.Isliked(likeData,(err,user)=>{
       if(err){
           if (err.name === 'MongoError' && err.code === 11000) {
@@ -214,10 +215,10 @@ router.get('/',(req,res)=>{
   router.post('/unlikerecipe',token.verifytoken,(req,res)=>{
     //console.log(req.body.recipename);
     //console.log(req.user.username);
-    const likeData = new likerecipemodel({
+    const likeData ={
       recipename:req.body.recipename,
       username:req.user.username
-    });
+    };
     likerecipemodel.deleteLikeData(likeData,(err,user)=>{
       if(err){
           if (err.name === 'MongoError' && err.code === 11000) {
@@ -266,5 +267,41 @@ router.get('/',(req,res)=>{
     })
     
   });
+
+  router.post('/deleterecipe',token.verifytoken2,(req,res)=>{
+    // console.log(req.body.recipename);
+     //console.log(req.user.username);
+     const recipedata = {
+       recipename:req.body.recipename,
+       username:req.user.username
+     };
+    likerecipemodel.deletelikebyrecipe(recipedata,(err,call)=>{
+     if(err){
+      res.json({state:false,msg:"server error!"});
+     }else{
+      recipemodels.getViewrecipe(recipedata.recipename,(err,recipe)=>{
+        if(err){
+          res.json({state:false,msg:"server error!"});
+         // console.log("error in retrive recipe name");
+        }else{
+          //console.log(recipe[0].image_id)
+        cloudinary.uploader.destroy(recipe[0].image_id, function(result) {
+          
+          recipemodels.deleterecipe(recipedata.recipename,(err,call)=>{
+            if(err){
+              res.json({state:false,msg:"server error!"});
+            }else{
+              res.json({state:true,msg:"recipe deleted!"});
+            }
+            })
+        });
+      }
+      })
+     }
+    });
+    
+    
+    
+    });
 
   module.exports = router;
