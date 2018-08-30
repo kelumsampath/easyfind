@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../../service/auth.service';
 import { NgFlashMessageService } from 'ng-flash-messages';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-profile',
@@ -12,10 +14,16 @@ export class ProfileComponent implements OnInit {
   myname:String;
   recipe:any;
   imgurl:String;
+  editData:boolean;
+  fullname:String;
+  email:String;
+  phoneno:Number;
   constructor(
     private authservice : AuthService,
     private ngFlashMessageService: NgFlashMessageService,
+    private router:Router,
   ) { 
+    this.editData=false;
     this.authservice.getprofile().subscribe(res=>{
      if(res.state){
       this.user = res.loggeduser;
@@ -41,6 +49,34 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
    
+  }
+  editform(){
+    this.editData=true;
+  }
+  cancel(){
+    this.editData=false;
+  }
+  saveform(){
+    
+    const newdata={
+      fullname:this.fullname||this.user.fullname,
+      email:this.email||this.user.email,
+      phoneno:this.phoneno||this.user.phoneno
+    }
+    this.authservice.editUser(newdata).subscribe(res=>{
+      if(res.state){
+        this.editData=false;
+      this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: true,timeout: 4000,type: 'success'});
+      
+      this.router.navigate(['/..']);
+      }
+      else{
+      //console.log(res.msg);
+      this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: false,timeout: 4000,type: 'danger'});
+      ;
+      }
+    });
+    
   }
 
 }

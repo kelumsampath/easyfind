@@ -58,4 +58,20 @@ module.exports.getUserDetails = function(username,callback){
     datamodels.findOne(query,callback); 
 }
 
+module.exports.updateUser = function(upadatedata,callback){
+    datamodels.update
+	(
+		{
+			username : upadatedata.username
+		},
+		{
+			$set :
+			{
+				fullname : upadatedata.fullname,
+                email : upadatedata.email,
+                phoneno: upadatedata.phoneno
+			}
+		},callback
+	)
+}
 module.exports.searchUser;
