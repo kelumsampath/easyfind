@@ -17,6 +17,7 @@ export class RecieviewComponent implements OnInit {
   likeDeta:any;
   Islike:boolean;
   likes:Number;
+  isrealuser:boolean;
   constructor(private activatedRoute: ActivatedRoute,
               private authservice:AuthService,
               private ngFlashMessageService: NgFlashMessageService,
@@ -73,7 +74,21 @@ export class RecieviewComponent implements OnInit {
    }
 
   ngOnInit() {
-  
+  if(this.authservice.loggedIn()){
+    this.authservice.getprofile().subscribe(res=>{
+      if(res.state){
+        if(res.loggeduser.username==this.myrecipe.author){
+         // console.log("real user" );
+        this.isrealuser=true;
+        }else{
+          this.isrealuser=false;
+        }
+      }
+        else{
+          this.isrealuser=false;
+          }
+    });
+  }
   }
 
   
