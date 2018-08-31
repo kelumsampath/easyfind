@@ -166,4 +166,26 @@ editUser(editData){
   headers.append('content-Type','application/json');
   return this.http.post("http://localhost:3000/user/updateprofile",editData,{headers:headers}).map(res=>res.json());
 }
+
+editimage(image){
+  
+  const token = localStorage.getItem("tokenid");
+  const formData: FormData = new FormData();
+  formData.append('Authorization',token);
+  formData.append('editprofpic', image.editimage,image.editimage.name);
+  return this.http.post("http://localhost:3000/user/profpicchange", formData).map(res=>res.json()); 
+};
+
+deleterecipe(recipename){
+  const recipeData={
+    "recipename":recipename
+  }
+  let headers = new Headers();
+  this.fetchtoken();
+  //console.log(this.authtoken);
+  headers.append('Authorization',this.authtoken);
+  headers.append('content-Type','application/json');
+  return this.http.post("http://localhost:3000/foodrecipe/deleterecipe",recipeData,{headers:headers}).map(res=>res.json());
+}
+
 }

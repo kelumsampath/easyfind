@@ -30,3 +30,11 @@ ul{
   height: 100px;
   float: left;
 }
+input[type='file'] {
+  color: transparent;
+  direction: rtl;
+  visibility:hidden; 
+}
+#files{
+  margin-left: 50%
+}

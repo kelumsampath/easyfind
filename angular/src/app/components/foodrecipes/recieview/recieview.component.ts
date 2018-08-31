@@ -17,7 +17,6 @@ export class RecieviewComponent implements OnInit {
   likeDeta:any;
   Islike:boolean;
   likes:Number;
-  
   constructor(private activatedRoute: ActivatedRoute,
               private authservice:AuthService,
               private ngFlashMessageService: NgFlashMessageService,
@@ -108,5 +107,22 @@ export class RecieviewComponent implements OnInit {
     });
   }
 }
+
+deleterecipe(){
+  if (window.confirm("Do you really want to delete this recipe?")) { 
+    this.authservice.deleterecipe(this.myrecipe.recipename).subscribe(res=>{
+      if(res.state){
+        //console.log("liked");
+        this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: true,timeout: 4000,type: 'success'});
+        this.router.navigate(['/..']);
+      }
+        else{
+         this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: true,timeout: 4000,type: 'danger'});
+         
+        }
+    });
+  }
+}
+
 
 }

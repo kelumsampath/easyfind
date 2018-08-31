@@ -15,6 +15,7 @@ const recepeSchema = new schema({
     rate:{type:String,required:false},
     catagory:{type:String,required:false},
     description:{type:String,required:false},
+    image_id:{type:String,required:false},
     imageUrl:{type:String,required:false},
     likes:{type:Number,required:false,default:0},
     date:{type: Date}
@@ -55,3 +56,9 @@ module.exports.getUserRecipe = function(username,callback){
     const query = {username:username};
     recipemodels.find(query,callback).sort({"date":-1});
 };
+
+module.exports.deleterecipe = function(myrecipename,callback){
+    const query = { recipename:myrecipename };
+    recipemodels.remove(query,callback);
+}; 
+
