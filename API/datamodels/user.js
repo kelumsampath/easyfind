@@ -90,5 +90,42 @@ module.exports.piceditidsave = function(picupdatedata,callback){
 	)
 }
 
+module.exports.changepassword = function(object,callback){
+    //console.log(object.password);
+    //console.log(object.username);
+    query={username:object.username}
+    datamodels.findOne(query,function(err, user) {
+        if (err) {
+            return callback(err);
+        }else{
+        bcrypt.compare(object.password.oldpassword, user.password, function(err, result) {
+            if (result === true) {
+                //console.log("matched")
+                bcrypt.genSalt(10, function(err, salt) {
+                    bcrypt.hash(object.password.newpassword, salt, function(err, hash) {
+                        //console.log(hash);
+                        const newpass = hash;
+                        if(err){
+                            return callback(err);
+                        }else{
+                            datamodels.update(query,{$set :{ password : newpass}},function(err,msg){
+                                if(err){
+                                 return callback(err);  
+                                }else{
+                                 return callback(null,true);
+                                }
+                            });   
+                        }
+                    });
+                });
+            } else {
+               // console.log("not match")
+                return callback(null,false);
+            }
+        })
+    }
+    })
+    //console.log(callback);
+}
 
 module.exports.searchUser;
