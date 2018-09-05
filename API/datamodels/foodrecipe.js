@@ -18,7 +18,8 @@ const recepeSchema = new schema({
     image_id:{type:String,required:false},
     imageUrl:{type:String,required:false},
     likes:{type:Number,required:false,default:0},
-    date:{type: Date}
+    date:{type: Date},
+    status:{type:String,required:false,default:"pending"}
 });
 
 const recipemodels=module.exports = mongoose.model("recipemodels",recepeSchema);
@@ -29,12 +30,12 @@ module.exports.dbSave = function(regRecipe,callback){
 }
 
 module.exports.getAllrecipe = function(dd,callback){
-    const query = {};
+    const query = {status:"accepted"};
     recipemodels.find(query,callback).sort({"date":-1});
 };
 
 module.exports.getmostliked = function(dd,callback){
-    const query = {};
+    const query = {status:"accepted"};
     recipemodels.find(query,callback).sort({"likes":-1}).limit(5);
 };
 

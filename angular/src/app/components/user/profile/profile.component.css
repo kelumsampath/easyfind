@@ -38,3 +38,12 @@ input[type='file'] {
 #files{
   margin-left: 50%
 }
+#pending{
+  background-color: yellow;
+}
+#accepted{
+  background-color: green;
+}
+#rejected{
+  background-color: red;
+}
