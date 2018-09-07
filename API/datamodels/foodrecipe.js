@@ -29,8 +29,13 @@ module.exports.dbSave = function(regRecipe,callback){
  
 }
 
-module.exports.getAllrecipe = function(dd,callback){
+module.exports.getAcceptedrecipe = function(dd,callback){
     const query = {status:"accepted"};
+    recipemodels.find(query,callback).sort({"date":-1});
+};
+
+module.exports.getAllrecipe = function(dd,callback){
+    const query = {};
     recipemodels.find(query,callback).sort({"date":-1});
 };
 
