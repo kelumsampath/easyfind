@@ -8,8 +8,8 @@ const userSchema = new schema({
     email:{type:String,required:true},
     phoneno:{type:Number,required:true},
     password:{type:String,required:true},
-    profpic_cloud_id:{type:String,required:true}
-
+    profpic_cloud_id:{type:String,required:true},
+    usertype:{type:String,required:false}
 });
 
 const datamodels = module.exports = mongoose.model("datamodels",userSchema);

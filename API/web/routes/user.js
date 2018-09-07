@@ -34,7 +34,8 @@ router.post('/register',upload.single('profpic'),(req,res)=>{
     email:req.body.email,
     phoneno:req.body.phoneno,
     password:req.body.password,
-    profpic_cloud_id:result.public_id
+    profpic_cloud_id:result.public_id,
+    usertype:"cook"
   });
   //console.log(regUser);
   datamodelds.dbSave(regUser,(err,user)=>{
