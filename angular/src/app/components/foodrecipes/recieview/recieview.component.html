@@ -61,5 +61,12 @@
               <br>
               <button (click)="deleterecipe()">Delete this Recipe</button>
             </div>
+            <div *ngIf="admin==true">
+                <hr>
+                <h3>Status: {{this.status}}</h3>
+                <button class="btn btn-success btn-lg " (click)="accept()" *ngIf="this.status!='accepted'">Accept</button>
+                <button class="btn btn-info btn-lg " (click)="pending()" *ngIf="this.status!='pending'">Pending</button>
+                <button class="btn btn-danger btn-lg " (click)="reject()" *ngIf="this.status!='rejected'">Reject</button>
+              </div>
   </div>
 </div>

@@ -251,7 +251,7 @@ router.post('/isadmin',token.verifytoken,(req,res)=>{
   
 });
 
-router.get('/getadminpanel',token.isAdminUser,(req,res)=>{
+/*router.get('/getadminpanel',token.isAdminUser,(req,res)=>{
   console.log("ssssaassa")
-});
+});*/
 module.exports = router;

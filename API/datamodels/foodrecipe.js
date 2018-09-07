@@ -63,3 +63,10 @@ module.exports.deleterecipe = function(myrecipename,callback){
     recipemodels.remove(query,callback);
 }; 
 
+module.exports.updatestatus = function(statusData,callback){
+    const query = { recipename:statusData.recipename };
+    recipemodels.update(
+        query,
+        { $set: { "status": statusData.status } },callback
+     )
+}; 

@@ -299,9 +299,23 @@ router.get('/',(req,res)=>{
       })
      }
     });
-    
-    
-    
+    });
+
+    router.post('/acceptrecipe',token.isAdminUser,(req,res)=>{
+      statusdata ={
+        "recipename":req.body.recipename,
+        "status":req.body.status
+      }
+      
+      recipemodels.updatestatus(statusdata,(err,callback)=>{
+        if(err){
+            res.json({state:false});
+          }else{
+            
+            res.json({state:true,msg:"status updated"})
+          }
+      })
+      
     });
 
   module.exports = router;
