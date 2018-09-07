@@ -19,12 +19,17 @@ export class ProfileComponent implements OnInit {
   email:String;
   phoneno:Number;
   editimage:File;
+  changepassword:boolean;
+  newpassword:string;
+  compassword:string;
+  oldpassword:String;
   constructor(
     private authservice : AuthService,
     private ngFlashMessageService: NgFlashMessageService,
     private router:Router,
   ) { 
     this.editData=false;
+    this.changepassword=false;
     this.authservice.getprofile().subscribe(res=>{
      if(res.state){
       this.user = res.loggeduser;
@@ -98,5 +103,45 @@ export class ProfileComponent implements OnInit {
       }
     });
   }
+
+  changepass(){
+    this.changepassword=true;
+  }
+  chngepasscancel(){
+    this.changepassword=false;
+  }
+
+  
+
+  Validate() {
+    var password = this.newpassword;
+    var confirmPassword = this.compassword;
+    var oldpassword = this.oldpassword
+    //console.log(password+"ds"+confirmPassword);
+    if (password != confirmPassword) {
+        window.alert("You new Passwords is not similar with confirm password. Please enter same password in both");
+       // console.log("ddd")
+        
+    }else{
+     const password={
+       oldpassword:this.oldpassword,
+       newpassword:this.newpassword
+     }
+     this.authservice.changepassword(password).subscribe(res=>{
+      if(res.state){
+      this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: true,timeout: 4000,type: 'success'});
+      this.changepassword=false;
+      }
+      else{
+      //console.log(res.msg);
+      this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: false,timeout: 4000,type: 'danger'});
+      
+      }
+    });
+      
+      
+    }
+   
+}
 
 }

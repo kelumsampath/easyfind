@@ -216,4 +216,20 @@ router.post('/profpicchange',upload.single('editprofpic'),token.verifyfiletoken,
  
 });
 
+
+router.post('/changepassword',token.verifytoken,(req,res)=>{
+  var userdata = req.user;
+  //console.log(req.body)
+  datamodelds.changepassword({password:req.body,username:userdata.username},(err,call)=>{
+   if(err){
+    res.send({state:false,msg:"Server Error!"});
+   }else if(call){
+    res.send({state:true,msg:"password changed"});
+   }else{
+    res.send({state:false,msg:"Wrong password!"});
+   }
+  })
+  
+});
+
 module.exports = router;
