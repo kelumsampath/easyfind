@@ -34,7 +34,8 @@ router.post('/register',upload.single('profpic'),(req,res)=>{
     email:req.body.email,
     phoneno:req.body.phoneno,
     password:req.body.password,
-    profpic_cloud_id:result.public_id
+    profpic_cloud_id:result.public_id,
+    usertype:"cook"
   });
   //console.log(regUser);
   datamodelds.dbSave(regUser,(err,user)=>{
@@ -232,4 +233,21 @@ router.post('/changepassword',token.verifytoken,(req,res)=>{
   
 });
 
+
+router.post('/isadmin',token.verifytoken,(req,res)=>{
+  var userdata = req.user;
+  
+  datamodelds.searchUser(userdata.username,(err,user)=>{
+    if(err){
+      res.send({state:false,msg:"Server Error!"});
+    }else{
+      if(user.usertype=="admin"){
+        res.send({state:true,msg:"Admin user!"});
+      }else{
+        res.send({state:false,msg:"not admin user!"});
+      } 
+    }
+  })
+  
+});
 module.exports = router;

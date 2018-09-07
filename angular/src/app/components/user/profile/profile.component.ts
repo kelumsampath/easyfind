@@ -23,11 +23,13 @@ export class ProfileComponent implements OnInit {
   newpassword:string;
   compassword:string;
   oldpassword:String;
+  admin:boolean;
   constructor(
     private authservice : AuthService,
     private ngFlashMessageService: NgFlashMessageService,
     private router:Router,
-  ) { 
+  ) {
+    this.admin=false;
     this.editData=false;
     this.changepassword=false;
     this.authservice.getprofile().subscribe(res=>{
@@ -51,6 +53,7 @@ export class ProfileComponent implements OnInit {
         this.ngFlashMessageService.showFlashMessage({messages: ['Server Error!'],dismissible: true,timeout: 4000,type: 'danger'});
        }
     })
+    this.isadmin();
   }
 
   ngOnInit() {
@@ -142,6 +145,20 @@ export class ProfileComponent implements OnInit {
       
     }
    
-}
+  }
+
+  isadmin(){
+    if(this.authservice.loggedIn()){
+    //return true;
+    this.authservice.Isadmin().subscribe(res=>{
+      if(res.state){
+      this.admin=true;
+    }
+      else{
+      this.admin=false;
+      }
+    });
+    }
+  }
 
 }
