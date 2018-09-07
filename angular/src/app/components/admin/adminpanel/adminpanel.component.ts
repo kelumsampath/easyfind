@@ -19,6 +19,7 @@ export class AdminpanelComponent implements OnInit {
     private ngFlashMessageService: NgFlashMessageService,
     private router:Router,
   ) {
+    this.isadmin();
     this.mystate="pending";
     this.headline="Pending Posts";
     this.catogary={
@@ -56,6 +57,20 @@ export class AdminpanelComponent implements OnInit {
   pending(){
     this.mystate="pending";
     this.headline="Pending Posts";
+  }
+
+  isadmin(){
+    if(this.authservice.loggedIn()){
+    //return true;
+    this.authservice.Isadmin().subscribe(res=>{
+      if(res.state){
+      
+    }
+      else{
+        this.router.navigate(['/']);
+      }
+    });
+    }
   }
 
 }
