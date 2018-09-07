@@ -3,9 +3,14 @@
   
   <div><h1>{{user.username}}</h1></div>
   <div ><img src="{{user.prof_pic_link}}" alt="{{user.prof_pic_alt}}" class="profpic"></div>
+  
   <button id="files" onclick="document.getElementById('file').click();return false;" class="btn btn-default btn-lg">Change picture</button>
+  
   <input type="file" (change)="profpic($event.target.files)"  value="choose picc" id="file" accept="image/*">
   <hr>
+  <div *ngIf="admin==true">
+    <button id="adminpanel" class="btn btn-success btn-lg">Admin panel</button><hr>
+  </div>
   <div *ngIf="editData==false">
   <table >
     <tr>

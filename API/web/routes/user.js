@@ -233,4 +233,21 @@ router.post('/changepassword',token.verifytoken,(req,res)=>{
   
 });
 
+
+router.post('/isadmin',token.verifytoken,(req,res)=>{
+  var userdata = req.user;
+  
+  datamodelds.searchUser(userdata.username,(err,user)=>{
+    if(err){
+      res.send({state:false,msg:"Server Error!"});
+    }else{
+      if(user.usertype=="admin"){
+        res.send({state:true,msg:"Admin user!"});
+      }else{
+        res.send({state:false,msg:"not admin user!"});
+      } 
+    }
+  })
+  
+});
 module.exports = router;
