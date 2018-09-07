@@ -22,6 +22,7 @@ import { AllrecipeComponent } from './components/foodrecipes/allrecipe/allrecipe
 import { RecieviewComponent } from './components/foodrecipes/recieview/recieview.component';
 import { AdminpanelComponent } from './components/admin/adminpanel/adminpanel.component';
 
+
 const applicationRoutes:Routes = [
   {path:'',component:RootComponent},
   {path:'login',component:LoginComponent},
@@ -34,6 +35,7 @@ const applicationRoutes:Routes = [
   {path:'allrecipe/:recipename',component:RecieviewComponent},
   {path:'profile/:recipename',component:RecieviewComponent},
   {path:'adminpanel',component:AdminpanelComponent, canActivate: [AuthGuard]},
+  {path:'adminpanel/:recipename',component:RecieviewComponent,canActivate: [AuthGuard]},
 ];
 
 @NgModule({

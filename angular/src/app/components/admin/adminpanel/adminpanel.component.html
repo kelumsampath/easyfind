@@ -11,7 +11,7 @@
         <div *ngIf="recipies.status==this.mystate">
          <div *ngIf="recipies.status=='accepted'">
          <li>
-          <button [routerLink]="['/allrecipe',recipies.recipename]" class="add" id="accepted">
+          <button [routerLink]="['/adminpanel',recipies.recipename]" class="add" id="accepted">
           <div id="menu">
           <img src="{{ recipies.imageUrl }}" id="pic" alt="" height="100px">
           <h1> {{ recipies.recipename }}</h1>
@@ -23,7 +23,7 @@
 
         <div *ngIf="recipies.status=='rejected'">
           <li >
-           <button [routerLink]="['/allrecipe',recipies.recipename]" class="add" id="rejected">
+           <button [routerLink]="['/adminpanel',recipies.recipename]" class="add" id="rejected">
            <div id="menu">
            <img src="{{ recipies.imageUrl }}" id="pic" alt="" height="100px">
            <h1> {{ recipies.recipename }}</h1>
@@ -35,7 +35,7 @@
 
          <div *ngIf="recipies.status=='pending'">
           <li >
-           <button [routerLink]="['/allrecipe',recipies.recipename]" class="add" id="pending">
+           <button [routerLink]="['/adminpanel',recipies.recipename]" class="add" id="pending">
            <div id="menu">
            <img src="{{ recipies.imageUrl }}" id="pic" alt="" height="100px">
            <h1> {{ recipies.recipename }}</h1>
