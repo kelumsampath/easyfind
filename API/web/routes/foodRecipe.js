@@ -158,9 +158,14 @@ router.get('/',(req,res)=>{
   router.post('/likerecipe',token.verifytoken,(req,res)=>{
     //console.log(req.body.recipename);
     //console.log(req.user.username);
+    recipemodels.getViewrecipe(req.body.recipename,(err,recipe)=>{
+      if(err){
+        res.json({state:false,msg:"Something Went wrong!"})
+      }else{
     const likeData = new likerecipemodel({
       recipename:req.body.recipename,
-      username:req.user.username
+      username:req.user.username,
+      author:recipe[0].username
     });
     likerecipemodel.dbSave(likeData,(err,user)=>{
       if(err){
@@ -198,7 +203,9 @@ router.get('/',(req,res)=>{
        
       }
     })
-  });
+    }
+    })
+    });
 
   router.post('/checklike',token.verifytoken2,(req,res)=>{
    // console.log(req.body.recipename);
