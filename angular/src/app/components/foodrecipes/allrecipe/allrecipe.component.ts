@@ -22,7 +22,7 @@ export class AllrecipeComponent implements OnInit {
   ) {
     this.catogary={
       "mycatogory":"all"}
-    this.authservice.getAllRecipe().subscribe(res=>{
+    this.authservice.getAllacceptedRecipe().subscribe(res=>{
       if(res.state){
         this.recipe = res.recipe;
         this.imgurl = res.pic_url;

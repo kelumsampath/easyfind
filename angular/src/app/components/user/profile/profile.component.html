@@ -9,7 +9,7 @@
   <input type="file" (change)="profpic($event.target.files)"  value="choose picc" id="file" accept="image/*">
   <hr>
   <div *ngIf="admin==true">
-    <button id="adminpanel" class="btn btn-success btn-lg">Admin panel</button><hr>
+    <button id="adminpanel" [routerLink]="['/adminpanel']" class="btn btn-success btn-lg">Admin panel</button><hr>
   </div>
   <div *ngIf="editData==false">
   <table >

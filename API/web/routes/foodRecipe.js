@@ -84,7 +84,24 @@ router.get('/',(req,res)=>{
   })
   });
 
-  router.post('/getallrecipe',(req,res)=>{
+  router.post('/getallacceptedrecipe',(req,res)=>{
+   
+    recipemodels.getAcceptedrecipe("csc",(err,recipe)=>{
+      if(err) {
+        //throw err;
+        //console.log("Allrecipe data retrive error");
+        res.json({state:false});
+       
+      }
+      else{
+    
+        res.json({state:true,recipe:recipe});
+      }
+    })
+    
+  });
+
+  router.post('/getAllRecipe',(req,res)=>{
    
     recipemodels.getAllrecipe("csc",(err,recipe)=>{
       if(err) {
@@ -299,9 +316,23 @@ router.get('/',(req,res)=>{
       })
      }
     });
-    
-    
-    
+    });
+
+    router.post('/acceptrecipe',token.isAdminUser,(req,res)=>{
+      statusdata ={
+        "recipename":req.body.recipename,
+        "status":req.body.status
+      }
+      
+      recipemodels.updatestatus(statusdata,(err,callback)=>{
+        if(err){
+            res.json({state:false});
+          }else{
+            
+            res.json({state:true,msg:"status updated"})
+          }
+      })
+      
     });
 
   module.exports = router;
