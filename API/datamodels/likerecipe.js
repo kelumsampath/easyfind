@@ -56,3 +56,8 @@ module.exports.deleterecipe = function(recipedata,callback){
     likerecipemodel.remove(query,callback);    
     
 };
+
+module.exports.deletelikebyauthor = function(authorname,callback){
+    const query= {author  : authorname} 
+       likerecipemodel.remove(query,callback);     
+}

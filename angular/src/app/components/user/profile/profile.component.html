@@ -56,7 +56,9 @@
   <button (click)="cancel()" class="btn btn-default btn-lg">Cancel</button> 
 </div>
   <hr>
-
+  
+  <button class="btn btn-danger btn-lg" (click)="deleteacc()">DELETE ACCOUNT</button>
+  <hr>
   <h4>My Recipes</h4>
   <ul *ngFor="let recipies of recipe;let i = index" [attr.data-index]="i" class="add">
       <li *ngIf="recipies.status=='pending'" >

@@ -128,4 +128,8 @@ module.exports.changepassword = function(object,callback){
     //console.log(callback);
 }
 
+module.exports.deleteuser = function(username,callback){
+    const query = {username:username};
+    datamodels.remove(query,callback); 
+}
 module.exports.searchUser;

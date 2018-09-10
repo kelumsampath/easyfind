@@ -62,6 +62,7 @@ logOut(){
   return this.http.get("http://localhost:3000/user/logout",{headers:headers}).map(res=>res.json()); 
 }
 
+
 loggedIn(){
   return tokenNotExpired('tokenid');
   
@@ -225,4 +226,16 @@ searchrecipe(recipename){
   headers.append('content-Type','application/json');
   return this.http.post("http://localhost:3000/foodrecipe/searchrecipe",recipename,{headers:headers}).map(res=>res.json());
 }
+
+deleteacc(pass){
+  const password={
+    password:pass
+  }
+  this.fetchtoken();
+  let headers = new Headers();
+  headers.append('Authorization',this.authtoken);
+  headers.append('content-Type','application/json');
+  return this.http.post("http://localhost:3000/user/deleteuser",password,{headers:headers}).map(res=>res.json());
+}
+
 }

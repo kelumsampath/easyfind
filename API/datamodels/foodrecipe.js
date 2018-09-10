@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 const bcrypt = require('bcryptjs');
+const cloudinary = require('cloudinary');
 
 const recepeSchema = new schema({
     username:{type:String,required:true},
@@ -80,3 +81,37 @@ module.exports.searchrecipe = function(reciname,callback){
     const query =  { recipename: { $regex: reciname } } ;
     recipemodels.find(query,callback).sort({"date":-1});
 };
+
+module.exports.deleterecipebyauthor = function(author,callback){
+    const query = { username:author };
+    
+    recipemodels.count(query,(err,count)=>{
+        if(err){
+            callback(err)
+        }else{
+            recipemodels.find(query,(err,rows)=>{
+                if(err){
+                    callback(err)
+                }else{
+                    for (i = 0; i < count; i++) { 
+                       cloudinary.uploader.destroy(rows[i].image_id, function(result) {
+                       })
+                      
+                       
+                    }
+                    recipemodels.remove(query,(err,msg)=>{
+                        if(err){
+                            callback(err);
+                        }else{
+                            callback(null,true);
+                        }
+                    });
+                    
+                }
+        })
+    }
+    
+    });
+
+
+}; 
