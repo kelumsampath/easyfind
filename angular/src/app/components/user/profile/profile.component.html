@@ -3,9 +3,14 @@
   
   <div><h1>{{user.username}}</h1></div>
   <div ><img src="{{user.prof_pic_link}}" alt="{{user.prof_pic_alt}}" class="profpic"></div>
+  
   <button id="files" onclick="document.getElementById('file').click();return false;" class="btn btn-default btn-lg">Change picture</button>
+  
   <input type="file" (change)="profpic($event.target.files)"  value="choose picc" id="file" accept="image/*">
   <hr>
+  <div *ngIf="admin==true">
+    <button id="adminpanel" class="btn btn-success btn-lg">Admin panel</button><hr>
+  </div>
   <div *ngIf="editData==false">
   <table >
     <tr>
@@ -54,16 +59,36 @@
 
   <h4>My Recipes</h4>
   <ul *ngFor="let recipies of recipe;let i = index" [attr.data-index]="i" class="add">
-      <li>
-       <button [routerLink]="['/profile',recipies.recipename]" class="add">
+      <li *ngIf="recipies.status=='pending'" >
+       <button [routerLink]="['/profile',recipies.recipename]" class="add" id="pending">
        <div id="menu">
        <img src="{{ recipies.imageUrl }}" id="menupic" alt="">
        <h1> {{ recipies.recipename }}</h1>
       <h4>likes:{{ recipies.likes  }}</h4>
-      <h4>Status: approved</h4>
+      <h4>Status: {{recipies.status}}</h4>
       </div>
        </button>
      </li>
+     <li *ngIf="recipies.status=='accepted'">
+      <button [routerLink]="['/profile',recipies.recipename]" class="add" id="accepted">
+      <div id="menu">
+      <img src="{{ recipies.imageUrl }}" id="menupic" alt="">
+      <h1> {{ recipies.recipename }}</h1>
+     <h4>likes:{{ recipies.likes  }}</h4>
+     <h4>Status: {{recipies.status}}</h4>
+     </div>
+      </button>
+    </li>
+    <li *ngIf="recipies.status=='rejected'">
+      <button [routerLink]="['/profile',recipies.recipename]" class="add" id="rejected">
+      <div id="menu">
+      <img src="{{ recipies.imageUrl }}" id="menupic" alt="">
+      <h1> {{ recipies.recipename }}</h1>
+     <h4>likes:{{ recipies.likes  }}</h4>
+     <h4>Status: {{recipies.status}}</h4>
+     </div>
+      </button>
+    </li>
      </ul>
    
 </div>
