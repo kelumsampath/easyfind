@@ -18,12 +18,15 @@ export class RecieviewComponent implements OnInit {
   Islike:boolean;
   likes:Number;
   isrealuser:boolean;
+  admin:boolean;
+  status:String;
   constructor(private activatedRoute: ActivatedRoute,
               private authservice:AuthService,
               private ngFlashMessageService: NgFlashMessageService,
               private router:Router,
               private authguard:AuthGuard
   ) {
+    this.admin=false;
     this.myrecipe={
       recipename:this.activatedRoute.snapshot.paramMap.get('recipename')
     }
@@ -50,7 +53,7 @@ export class RecieviewComponent implements OnInit {
           "imageUrl" :this.recipe.imageUrl,
           "likes":this.likes,
           }
-        
+        this.status=res.recipe.status;
         //console.log(myrecipe);
        /// console.log(this.recipe.recipename);
         //this.recipe=res.recipe;
@@ -71,6 +74,7 @@ export class RecieviewComponent implements OnInit {
          this.Islike=false;
         }
     });
+    this.isadmin();
    }
 
   ngOnInit() {
@@ -139,5 +143,63 @@ deleterecipe(){
   }
 }
 
+isadmin(){
+  if(this.authservice.loggedIn()){
+  //return true;
+  this.authservice.Isadmin().subscribe(res=>{
+    if(res.state){
+    this.admin=true;
+  }
+    else{
+    this.admin=false;
+    }
+  });
+  }
+}
+
+accept(){
+  const statusdata={
+    recipename:this.myrecipe.recipename,
+    status:"accepted"
+  }
+  this.authservice.acceptRecipe(statusdata).subscribe(res=>{
+    if(res.state){
+    this.status="accepted"
+    }
+      else{
+        this.ngFlashMessageService.showFlashMessage({messages: ['SOMETHING WENT WRONG!'],dismissible: true,timeout: 4000,type: 'danger'});
+      }
+  });
+}
+
+pending(){
+  const statusdata={
+    recipename:this.myrecipe.recipename,
+    status:"pending"
+  }
+  this.authservice.acceptRecipe(statusdata).subscribe(res=>{
+    if(res.state){
+    this.status="pending"
+    }
+      else{
+        this.ngFlashMessageService.showFlashMessage({messages: ['SOMETHING WENT WRONG!'],dismissible: true,timeout: 4000,type: 'danger'});
+      }
+  });
+}
+
+reject(){
+  const statusdata={
+    recipename:this.myrecipe.recipename,
+    status:"rejected"
+  }
+  this.authservice.acceptRecipe(statusdata).subscribe(res=>{
+    if(res.state){
+    this.status="rejected"
+    }
+      else{
+        this.ngFlashMessageService.showFlashMessage({messages: ['SOMETHING WENT WRONG!'],dismissible: true,timeout: 4000,type: 'danger'});
+      }
+  });
+}
 
 }

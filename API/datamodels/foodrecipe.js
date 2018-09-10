@@ -29,8 +29,13 @@ module.exports.dbSave = function(regRecipe,callback){
  
 }
 
-module.exports.getAllrecipe = function(dd,callback){
+module.exports.getAcceptedrecipe = function(dd,callback){
     const query = {status:"accepted"};
+    recipemodels.find(query,callback).sort({"date":-1});
+};
+
+module.exports.getAllrecipe = function(dd,callback){
+    const query = {};
     recipemodels.find(query,callback).sort({"date":-1});
 };
 
@@ -63,3 +68,10 @@ module.exports.deleterecipe = function(myrecipename,callback){
     recipemodels.remove(query,callback);
 }; 
 
+module.exports.updatestatus = function(statusData,callback){
+    const query = { recipename:statusData.recipename };
+    recipemodels.update(
+        query,
+        { $set: { "status": statusData.status } },callback
+     )
+}; 

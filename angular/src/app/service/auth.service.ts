@@ -97,6 +97,12 @@ addrecipe(newrecipe){
   return this.http.post("http://localhost:3000/foodrecipe/addrecipe", formData).map(res=>res.json()); 
 };
 
+getAllacceptedRecipe(){
+  let headers = new Headers();
+  headers.append('content-Type','application/json');
+  return this.http.post("http://localhost:3000/foodrecipe/getallacceptedrecipe",{headers:headers}).map(res=>res.json());
+}
+
 getAllRecipe(){
   let headers = new Headers();
   headers.append('content-Type','application/json');
@@ -204,4 +210,14 @@ Isadmin(){
   headers.append('content-Type','application/json');
   return this.http.post("http://localhost:3000/user/isadmin",{sdsd:"sdd"},{headers:headers}).map(res=>res.json());
 }
+
+acceptRecipe(recipeData){
+  let headers = new Headers();
+  this.fetchtoken();
+  //console.log(this.authtoken);
+  headers.append('Authorization',this.authtoken);
+  headers.append('content-Type','application/json');
+  return this.http.post("http://localhost:3000/foodrecipe/acceptrecipe",recipeData,{headers:headers}).map(res=>res.json());
+}
+
 }
