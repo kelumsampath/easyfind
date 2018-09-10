@@ -220,4 +220,9 @@ acceptRecipe(recipeData){
   return this.http.post("http://localhost:3000/foodrecipe/acceptrecipe",recipeData,{headers:headers}).map(res=>res.json());
 }
 
+searchrecipe(recipename){
+  let headers = new Headers();
+  headers.append('content-Type','application/json');
+  return this.http.post("http://localhost:3000/foodrecipe/searchrecipe",recipename,{headers:headers}).map(res=>res.json());
+}
 }

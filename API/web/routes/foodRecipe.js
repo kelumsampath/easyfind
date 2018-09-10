@@ -335,4 +335,19 @@ router.get('/',(req,res)=>{
       
     });
 
+    router.post('/searchrecipe',(req,res)=>{
+      
+      recipemodels.searchrecipe(req.body.recipename,(err,callback)=>{
+        if(err){
+            res.json({state:false});
+          }else if(callback[0]==null){
+            res.json({state:true,recipecount:false})
+          }else{
+            res.json({state:true,recipecount:true,recipe:callback})
+          }
+      })
+      
+    });
+
+
   module.exports = router;
