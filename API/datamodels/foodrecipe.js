@@ -75,3 +75,8 @@ module.exports.updatestatus = function(statusData,callback){
         { $set: { "status": statusData.status } },callback
      )
 }; 
+
+module.exports.searchrecipe = function(reciname,callback){
+    const query =  { recipename: { $regex: reciname } } ;
+    recipemodels.find(query,callback).sort({"date":-1});
+};

@@ -5,6 +5,7 @@ const schema = mongoose.Schema;
 const likerecipeschema = new schema({
     username:{type:String,required:true},
     recipename:{type:String,required:true},
+    author:{type:String,require:true}
 });
 likerecipeschema.index({ username: 1, recipename: 1 }, { unique: true });
 const likerecipemodel=module.exports = mongoose.model("likerecipemodel",likerecipeschema);
