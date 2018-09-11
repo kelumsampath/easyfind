@@ -1,7 +1,8 @@
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const cloudinary = require('cloudinary');
-const multer  = require('multer')
+const multer  = require('multer');
+
 
 const router = express.Router();
 const datamodelds = require('../../datamodels/user');
@@ -10,6 +11,7 @@ const recipemodels = require('../../datamodels/foodrecipe');
 const likerecipemodel= require('../../datamodels/likerecipe');
 const token = require('../../config/token');
 const email=require('../../thirdparymodule/sendgrid');
+const password = require('../../thirdparymodule/genarate-password')
 
 const storage = multer.diskStorage({ 
   destination: function(req,file,callback){
@@ -23,7 +25,9 @@ const upload = multer({ storage: storage })
 
 
 router.get('/',(req,res)=>{
+  
  res.send("HELLO FOOD MASTER")
+ 
 });
 
 
@@ -33,19 +37,24 @@ router.post('/register',upload.single('profpic'),(req,res)=>{
   //console.log(req.body);
   cloudinary.uploader.upload(req.file.path,function(result) { 
     //console.log(result);
+    var pass;
+    password.genaratepass((password)=>{
+      pass=password;
+    })
   const regUser = new datamodelds({
     fullname:req.body.fullname,
     username:req.body.username,
     email:req.body.email,
     phoneno:req.body.phoneno,
-    password:req.body.password,
+    password:pass,
     profpic_cloud_id:result.public_id,
     usertype:"cook"
   });
+  
   const userdata={
     email:regUser.email,
     username:regUser.username,
-    password:regUser.password
+    password:pass
   }
       datamodelds.dbSave(regUser,(err,user)=>{
                 if(err){
