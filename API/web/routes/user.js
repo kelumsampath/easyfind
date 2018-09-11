@@ -9,6 +9,7 @@ const tokenmodels = require('../../datamodels/token');
 const recipemodels = require('../../datamodels/foodrecipe');
 const likerecipemodel= require('../../datamodels/likerecipe');
 const token = require('../../config/token');
+const email=require('../../thirdparymodule/sendgrid');
 
 const storage = multer.diskStorage({ 
   destination: function(req,file,callback){
@@ -22,7 +23,7 @@ const upload = multer({ storage: storage })
 
 
 router.get('/',(req,res)=>{
-  res.send("Hello user!");
+ res.send("HELLO FOOD MASTER")
 });
 
 
@@ -41,22 +42,32 @@ router.post('/register',upload.single('profpic'),(req,res)=>{
     profpic_cloud_id:result.public_id,
     usertype:"cook"
   });
-  //console.log(regUser);
-  datamodelds.dbSave(regUser,(err,user)=>{
-    if(err){
-      cloudinary.uploader.destroy(result.public_id, function(result) {
-        if (err.name === 'MongoError' && err.code === 11000) {
-           // console.log('There was a duplicate key error');
-           res.json({state:false,msg:"Your username already used!"}) 
-        }else{
-           res.json({state:false,msg:"Something Went wrong!"})
-        }
-      })
-    }else{
-      res.json({state:true,msg:"You have been successfully registered!"})
-    }
-  })
-  });
+  const userdata={
+    email:regUser.email,
+    username:regUser.username,
+    password:regUser.password
+  }
+      datamodelds.dbSave(regUser,(err,user)=>{
+                if(err){
+                  cloudinary.uploader.destroy(result.public_id, function(result) {
+                    if (err.name === 'MongoError' && err.code === 11000) {
+                      // console.log('There was a duplicate key error');
+                      res.json({state:false,msg:"Your username already used!"}) 
+                    }else{
+                      res.json({state:false,msg:"Something Went wrong!"})
+                    }
+                  })
+                }else{
+                  email.unamepasssend(userdata,(err,resp)=>{
+                    if(err){
+                      res.json({state:false,msg:"Server Error!!"})
+                    }else{
+                        res.json({state:true,msg:"Your password has been send to the email!"})
+                      }
+                    })
+                }
+              })  
+      });
 });
 
 router.post('/login',(req,res)=>{
