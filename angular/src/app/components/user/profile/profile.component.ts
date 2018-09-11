@@ -161,4 +161,26 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  deleteacc(){
+    const password=prompt("Enter Password:");
+    if(password!=null){
+      this.authservice.deleteacc(password).subscribe(res=>{
+        if(res.state){
+          this.authservice.logOut().subscribe(res=>{
+            if(res.state){
+              this.ngFlashMessageService.showFlashMessage({messages: ["Account Deactivated!"],dismissible: true,timeout: 4000,type: 'success'});
+              this.router.navigate(['/']);
+          }
+            else{
+              this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: false,timeout: 4000,type: 'danger'});
+            }
+          });
+      }
+        else{
+          this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: false,timeout: 4000,type: 'danger'});
+        }
+      });
+    }
+  }
+
 }
