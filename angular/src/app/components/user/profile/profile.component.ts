@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   imgurl:String;
   editData:boolean;
   fullname:String;
+  lastname:String;
   email:String;
   phoneno:Number;
   editimage:File;
@@ -69,6 +70,7 @@ export class ProfileComponent implements OnInit {
     
     const newdata={
       fullname:this.fullname||this.user.fullname,
+      lastname:this.lastname||this.user.lastname,
       email:this.email||this.user.email,
       phoneno:this.phoneno||this.user.phoneno
     }

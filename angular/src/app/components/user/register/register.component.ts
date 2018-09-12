@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class RegisterComponent implements OnInit {
 
   fullname:String;
-  username:String;
+  lastname:String;
   email:String;
   phoneno:Number;
   imageUrl:String = "../../../assets/images/defualt.jpg";
@@ -29,7 +29,7 @@ export class RegisterComponent implements OnInit {
 registerData(){
   const user={
     fullname:this.fullname,
-    username:this.username,
+    lastname:this.lastname,
     email:this.email,
     phoneno:this.phoneno,
     fileToUpload:this.fileToUpload
