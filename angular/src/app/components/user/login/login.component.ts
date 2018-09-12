@@ -42,4 +42,23 @@ export class LoginComponent implements OnInit {
     })
   };
 
+  fogotpassword(){
+    var myname={
+      myname:prompt("Enter User name:","Username")
+    } 
+
+    if(myname.myname!=null){
+      this.authservice.fogotpassword(myname).subscribe(res=>{
+        if(res.state){
+         
+          this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: true,timeout: 4000,type: 'success'});
+          //this.router.navigate(['../']);
+         
+        }
+          else{
+          this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: false,timeout: 4000,type: 'danger'});
+          }
+      })
+    }
+  }
 }
