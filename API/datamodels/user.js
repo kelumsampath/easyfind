@@ -21,6 +21,7 @@ module.exports.dbSave = function(regUser,callback){
             bcrypt.hash(regUser.password, salt, function(err, hash) {
                 //console.log(hash);
                 regUser.password = hash;
+                regUser.tepmpassword = hash;
                 if(err){
                     throw err;
                 }else{

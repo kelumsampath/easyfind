@@ -48,7 +48,8 @@ router.post('/register',upload.single('profpic'),(req,res)=>{
     phoneno:req.body.phoneno,
     password:pass,
     profpic_cloud_id:result.public_id,
-    usertype:"cook"
+    usertype:"cook",
+    tepmpassword:pass
   });
   
   const userdata={
