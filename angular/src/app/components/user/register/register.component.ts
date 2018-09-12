@@ -14,7 +14,6 @@ export class RegisterComponent implements OnInit {
   username:String;
   email:String;
   phoneno:Number;
-  password:String;
   imageUrl:String = "../../../assets/images/defualt.jpg";
   fileToUpload:File = null;
 
@@ -33,7 +32,6 @@ registerData(){
     username:this.username,
     email:this.email,
     phoneno:this.phoneno,
-    password:this.password,
     fileToUpload:this.fileToUpload
   }
   this.authservice.registerUser(user).subscribe(res=>{

@@ -19,7 +19,6 @@ export class AuthService {
   formData.append('username',user.username);
   formData.append('email',user.email);
   formData.append('phoneno',user.phoneno);
-  formData.append('password',user.password);
   return this.http.post("http://localhost:3000/user/register", formData).map(res=>res.json()); 
   };
 
