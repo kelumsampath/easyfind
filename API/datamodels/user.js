@@ -9,7 +9,8 @@ const userSchema = new schema({
     phoneno:{type:Number,required:true},
     password:{type:String,required:true},
     profpic_cloud_id:{type:String,required:true},
-    usertype:{type:String,required:false}
+    usertype:{type:String,required:false},
+    tepmpassword:{type:String,required:false},
 });
 
 const datamodels = module.exports = mongoose.model("datamodels",userSchema);
@@ -40,14 +41,22 @@ module.exports.searchUser = function(username,callback){
 
 
 
-module.exports.matchpassword = function(password,hash,callback){
+module.exports.matchpassword = function(password,hash,tepmpassword,callback){
     //console.log(password+" "+hash);
     bcrypt.compare(password, hash, function(err, res) {
         if(err) throw  err;
         if (res){
             callback(null,res);
         } else{
-            callback(null,res);
+            bcrypt.compare(password, tepmpassword, function(err, res) {
+                if(err) throw  err;
+                if (res){
+                    callback(null,res);
+                } else{
+                    callback(null,res);
+                }
+               // console.log(res);
+            });
         }
        // console.log(res);
     });
@@ -99,9 +108,15 @@ module.exports.changepassword = function(object,callback){
             return callback(err);
         }else{
         bcrypt.compare(object.password.oldpassword, user.password, function(err, result) {
-            if (result === true) {
+            if(err){
+                return callback(err);
+            }
+            else if (result === true) {
                 //console.log("matched")
                 bcrypt.genSalt(10, function(err, salt) {
+                    if(err){
+                        return callback(err);  
+                    }else{
                     bcrypt.hash(object.password.newpassword, salt, function(err, hash) {
                         //console.log(hash);
                         const newpass = hash;
@@ -117,10 +132,42 @@ module.exports.changepassword = function(object,callback){
                             });   
                         }
                     });
+                }
                 });
             } else {
                // console.log("not match")
-                return callback(null,false);
+                    bcrypt.compare(object.password.oldpassword, user.tepmpassword, function(err, result) {
+                        if(err){
+                            return callback(err);
+                        }
+                        else if (result === true) {
+                            //console.log("matched")
+                            bcrypt.genSalt(10, function(err, salt) {
+                                if(err){
+                                    return callback(err);  
+                                }else{
+                                bcrypt.hash(object.password.newpassword, salt, function(err, hash) {
+                                    //console.log(hash);
+                                    const newpass = hash;
+                                    if(err){
+                                        return callback(err);
+                                    }else{
+                                        datamodels.update(query,{$set :{ password : newpass}},function(err,msg){
+                                            if(err){
+                                            return callback(err);  
+                                            }else{
+                                            return callback(null,true);
+                                            }
+                                        });   
+                                    }
+                                });
+                            }
+                            });
+                        } else {
+                        // console.log("not match")
+                            return callback(null,false);
+                        }
+                    })
             }
         })
     }
@@ -132,4 +179,30 @@ module.exports.deleteuser = function(username,callback){
     const query = {username:username};
     datamodels.remove(query,callback); 
 }
+
+module.exports.savetemppass=function(tempuser,callback){
+    query={username:tempuser.username};
+    
+    bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(tempuser.password, salt, function(err, hash) {
+            //console.log(hash);
+            tempuser.password = hash;
+            if(err){
+                throw err;
+            }else{
+                datamodels.update(query,{$set :{ tepmpassword : tempuser.password}},function(err,msg){
+                    if(err){
+                     return callback(err);  
+                    }else{
+                     return callback(null,true);
+                    }
+                })
+               
+                
+            }
+        });
+    });
+
+}
+
 module.exports.searchUser;
