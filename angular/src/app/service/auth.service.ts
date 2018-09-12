@@ -19,7 +19,6 @@ export class AuthService {
   formData.append('username',user.username);
   formData.append('email',user.email);
   formData.append('phoneno',user.phoneno);
-  formData.append('password',user.password);
   return this.http.post("http://localhost:3000/user/register", formData).map(res=>res.json()); 
   };
 
@@ -237,5 +236,12 @@ deleteacc(pass){
   headers.append('content-Type','application/json');
   return this.http.post("http://localhost:3000/user/deleteuser",password,{headers:headers}).map(res=>res.json());
 }
+
+fogotpassword(username){
+  let headers = new Headers();
+  headers.append('content-Type','application/json');
+  return this.http.post("http://localhost:3000/user/fogotpassword",username,{headers:headers}).map(res=>res.json());
+}
+
 
 }

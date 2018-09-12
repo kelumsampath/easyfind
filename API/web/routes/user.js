@@ -89,7 +89,7 @@ router.post('/login',(req,res)=>{
 
     if(user){
       //console.log(user);
-      datamodelds.matchpassword(password,user.password,function(err,match){
+      datamodelds.matchpassword(password,user.password,user.tepmpassword,function(err,match){
         if(err) throw err;
         if(match){
           //console.log({user});
@@ -283,7 +283,7 @@ router.post('/deleteuser',token.verifytoken,(req,res)=>{
     res.send({state:false,msg:"Server Error!"});}
     else if(user){
       //console.log(user);
-      datamodelds.matchpassword(req.body.password,user.password,function(err,match){
+      datamodelds.matchpassword(req.body.password,user.password,user.tepmpassword,function(err,match){
         if(err){
           res.send({state:false,msg:"Server Error!"});
         }
@@ -319,6 +319,47 @@ router.post('/deleteuser',token.verifytoken,(req,res)=>{
   })
   
 });
+
+router.post('/fogotpassword',(req,res)=>{
+  var pass;
+    password.genaratepass((password)=>{
+      pass=password;
+    });
+    const userdata={
+      password:pass,
+      username:req.body.myname
+    }
+  datamodelds.searchUser(req.body.myname,(err,user)=>{
+    if(err){
+      res.send({state:false,msg:"Server Error!"});
+    }else{
+      if(user!=null){
+          datamodelds.savetemppass(userdata,(err,msg)=>{
+            if(err){
+              res.send({state:false,msg:"Server Error!"});
+            }else{
+              const tempuser={
+                email:user.email,
+                username:user.username,
+                password:pass
+              }
+              email.tempunamepasssend(tempuser,(err,resp)=>{
+                if(err){
+                  res.json({state:false,msg:"Server Error!!"})
+                }else{
+                    res.json({state:true,msg:"Your tempory password has been send to the email!"})
+                  }
+                })
+            }
+          })
+      }else{
+        res.send({state:false,msg:"No User Found!"});
+      }
+    }
+  })
+  
+});
+
 
 
 module.exports = router;
