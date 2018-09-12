@@ -38,12 +38,12 @@
 
         <div id="sidebar">
           <div class="sidecontent">
-              <h2 class='headline'>Most Popular Recipes of week</h2>
+              <h2 class='headline'>Most Popular Recipes</h2>
               <ul *ngFor="let recipies of sidebarrecipe;let i = index" [attr.data-index]="i">
               <li >
                   <button [routerLink]="['/allrecipe',recipies.recipename]" class="sideadd">
                   <div id="sidebarmenu">
-                  <img src="{{ recipies.imageUrl }}" id="sidebarpic" alt="" height="100px">
+                  <img src="{{ recipies.imageUrl }}" id="sidebarpic" alt="" >
                   <h1> {{ recipies.recipename }}</h1>
                   likes: {{ recipies.likes  }}
                  </div>

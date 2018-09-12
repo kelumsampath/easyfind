@@ -1,11 +1,14 @@
 .container{
+  color: aliceblue;
   width: 80%;
-  background-color: bisque;
+  background-color: #74707a;
   border-style: double;
   border-width: 5px;
-  border-color: blue;
+  border-color: #545952;
   margin-top: 3%;
   text-align: center;
+  padding-top: 3%;
+  padding-bottom: 3%;
 }
 .profpic{
   border-radius: 50%;
