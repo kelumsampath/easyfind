@@ -1,13 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
 
-#particles-js{
-    /*background: gray;
-    height: 400px;*/
-    position: absolute;
-  width: 100%;
-  height: 100%;
-  background:  #00356B;
-}
 
 body{
   background:  #00356B;
