@@ -6,6 +6,8 @@ const multer  = require('multer')
 const router = express.Router();
 const datamodelds = require('../../datamodels/user');
 const tokenmodels = require('../../datamodels/token');
+const recipemodels = require('../../datamodels/foodrecipe');
+const likerecipemodel= require('../../datamodels/likerecipe');
 const token = require('../../config/token');
 
 const storage = multer.diskStorage({ 
@@ -22,6 +24,8 @@ const upload = multer({ storage: storage })
 router.get('/',(req,res)=>{
   res.send("Hello user!");
 });
+
+
 
 
 router.post('/register',upload.single('profpic'),(req,res)=>{
@@ -251,7 +255,50 @@ router.post('/isadmin',token.verifytoken,(req,res)=>{
   
 });
 
-/*router.get('/getadminpanel',token.isAdminUser,(req,res)=>{
-  console.log("ssssaassa")
-});*/
+router.post('/deleteuser',token.verifytoken,(req,res)=>{
+  var userdata = req.user;
+  
+  datamodelds.searchUser(userdata.username,function(err,user){
+    if(err){
+    res.send({state:false,msg:"Server Error!"});}
+    else if(user){
+      //console.log(user);
+      datamodelds.matchpassword(req.body.password,user.password,function(err,match){
+        if(err){
+          res.send({state:false,msg:"Server Error!"});
+        }
+        if(match){
+          likerecipemodel.deletelikebyauthor(userdata.username,(err,msg)=>{
+            if(err){
+              res.send({state:false,msg:"Server Error!"});
+            }else{
+              recipemodels.deleterecipebyauthor(user.username,(err,msg)=>{
+                if(err){
+                  res.send({state:false,msg:"Server Error!"}); 
+                }else{
+                  cloudinary.uploader.destroy(user.profpic_cloud_id, function(result) {
+                      datamodelds.deleteuser(user.username,(err,msg)=>{
+                        if(err){
+                          res.send({state:false,msg:"Server Error!"});
+                        }else{
+                          res.send({state:true,msg:"Account deactivated succesfully!"});
+                        }
+                      })
+                  })
+                }
+              })
+            }
+          })
+        }else{
+          res.send({state:false,msg:"Wrong Password!"});
+        }
+      })
+    }else{
+      res.send({state:false,msg:"No User Found!"});
+    }
+  })
+  
+});
+
+
 module.exports = router;
