@@ -43,7 +43,8 @@ router.post('/register',upload.single('profpic'),(req,res)=>{
     })
   const regUser = new datamodelds({
     fullname:req.body.fullname,
-    username:req.body.username,
+    lastname:req.body.lastname,
+    username:req.body.email,
     email:req.body.email,
     phoneno:req.body.phoneno,
     password:pass,
@@ -153,6 +154,7 @@ router.get('/profile',token.verifytoken,(req,res)=>{
     //console.log(link[1]);
     const loggeduser = { "_id": user._id,
       "fullname":user.fullname,
+      "lastname":user.lastname,
       "username":user.username,
       "email":user.email,
       "phoneno":user.phoneno,
@@ -196,6 +198,7 @@ router.post('/updateprofile',token.verifytoken,(req,res)=>{
   const updatedata={
     username:req.user.username,
     fullname:req.body.fullname,
+    lastname:req.body.lastname,
     email:req.body.email,
     phoneno:req.body.phoneno
   }
