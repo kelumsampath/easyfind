@@ -16,4 +16,5 @@
   background-image: url(../../../assets/images/rootcover.jpg);
   opacity: 0.5;
   background-color:white;
+  background-size: contain; 
 }

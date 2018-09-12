@@ -22,6 +22,7 @@ import { AllrecipeComponent } from './components/foodrecipes/allrecipe/allrecipe
 import { RecieviewComponent } from './components/foodrecipes/recieview/recieview.component';
 import { AdminpanelComponent } from './components/admin/adminpanel/adminpanel.component';
 import { SearchComponent } from './components/search/search.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 const applicationRoutes:Routes = [
@@ -54,7 +55,8 @@ const applicationRoutes:Routes = [
     AllrecipeComponent,
     RecieviewComponent,
     AdminpanelComponent,
-    SearchComponent
+    SearchComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
