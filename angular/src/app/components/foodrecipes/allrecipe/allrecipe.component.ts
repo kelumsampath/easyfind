@@ -73,9 +73,9 @@ export class AllrecipeComponent implements OnInit {
   this.catogary={
     "mycatogory":"Short Meal"}
  }
- drinks(){
+ other(){
   this.catogary={
-    "mycatogory":"Drinks"}
+    "mycatogory":"Other"}
  }
 
  
