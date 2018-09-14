@@ -328,7 +328,8 @@ router.get('/',(req,res)=>{
     router.post('/acceptrecipe',token.isAdminUser,(req,res)=>{
       statusdata ={
         "recipename":req.body.recipename,
-        "status":req.body.status
+        "status":req.body.status,
+        "comment":req.body.comment
       }
       
       recipemodels.updatestatus(statusdata,(err,callback)=>{

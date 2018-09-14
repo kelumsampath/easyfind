@@ -20,7 +20,8 @@ const recepeSchema = new schema({
     imageUrl:{type:String,required:false},
     likes:{type:Number,required:false,default:0},
     date:{type: Date},
-    status:{type:String,required:false,default:"pending"}
+    status:{type:String,required:false,default:"pending"},
+    admincomment:{type:String,required:false,default:"pending for administrator review!"},
 });
 
 const recipemodels=module.exports = mongoose.model("recipemodels",recepeSchema);
@@ -73,7 +74,7 @@ module.exports.updatestatus = function(statusData,callback){
     const query = { recipename:statusData.recipename };
     recipemodels.update(
         query,
-        { $set: { "status": statusData.status } },callback
+        { $set: { "status": statusData.status,admincomment:statusData.comment } },callback
      )
 }; 
 
