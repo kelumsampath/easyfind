@@ -19,8 +19,8 @@
              <button [routerLink]="['/allrecipe',recipies.recipename]" class="add">
              <div id="menu">
              <img src="{{ recipies.imageUrl }}" id="pic" alt="" height="100px">
-             <h1> {{ recipies.recipename }}</h1>
-             {{ recipies.description  }}
+             <h1> {{ recipies.recipename }}</h1><br>
+             <h2>{{ recipies.description  }}</h2>
             </div>
              </button>
            </li>
@@ -28,8 +28,8 @@
             <button [routerLink]="['/allrecipe',recipies.recipename]" class="add">
             <div id="menu">
             <img src="{{ recipies.imageUrl }}" id="pic" alt="" height="100px">
-            <h1> {{ recipies.recipename }}</h1>
-            {{ recipies.description  }}
+            <h1> {{ recipies.recipename }}</h1><br>
+            <h2>{{ recipies.description  }}</h2>
            </div>
             </button>
           </li>

@@ -14,15 +14,15 @@
   <div *ngIf="editData==false">
   <table >
     <tr>
-    <td><h5>First name: {{user.fullname}} </h5></td>
-    <td><h5>Last name: {{user.lastname}} </h5></td>
+    <td><h3>First name: {{user.fullname}} </h3></td>
+    <td><h3>Last name: {{user.lastname}} </h3></td>
   </tr>
   <tr>
-    <td><h5>Email: {{user.email}}</h5></td>
-    <td><h5>Phone Number: {{user.phoneno}}</h5></td>
+    <td><h3>Email: {{user.email}}</h3></td>
+    <td><h3>Phone Number: {{user.phoneno}}</h3></td>
   </tr>
   <tr>
-    <td><h5>User name: {{user.username}} </h5></td>
+    <td><h3>User name: {{user.username}} </h3></td>
   </tr>
   </table> 
   <button (click)="editform()" class="btn btn-info btn-lg">Edit details</button>
@@ -30,7 +30,7 @@
   <button *ngIf="changepassword==false" (click)="changepass()" class="btn btn-lg">Change password</button><br>
     <div *ngIf="changepassword==true">
        <form #form=ngForm (submit)="Validate()">
-                <legend>Change Your Password</legend>
+                <legend><h3>Change Your Password</h3></legend>
                 <input type="password" placeholder="current Password" id="password" name="oldpassword" [(ngModel)]="oldpassword" required> <br><br>
                 <input type="password" placeholder="New Password" id="newpassword" name="newpassword" [(ngModel)]="newpassword" required> <br><br>
                 <input type="password" placeholder="Confirm Password" id="confirm_password" name="compassword" [(ngModel)]="compassword" required> <br><br>
@@ -45,15 +45,15 @@
 <div *ngIf="editData==true">
   <table >
     <tr>
-    <td><h5>Full name: <input type="text" name="fullname" placeholder="{{user.fullname}}" [(ngModel)]="fullname" > </h5></td>
-    <td><h5>Last name: <input type="text" name="lastname" placeholder="{{user.lastname}}" [(ngModel)]="lastname" > </h5></td>
+    <td><h3>Full name: <input type="text" name="fullname" placeholder="{{user.fullname}}" [(ngModel)]="fullname" > </h3></td>
+    <td><h3>Last name: <input type="text" name="lastname" placeholder="{{user.lastname}}" [(ngModel)]="lastname" > </h3></td>
   </tr>
   <tr>
-    <td><h5>Email:  <input type="email" name="email" placeholder="{{user.email}}" [(ngModel)]="email" > </h5></td>
-    <td><h5>Phone Number: <input type="number" name="phoneno" placeholder="{{user.phoneno}}" [(ngModel)]="phoneno" > </h5></td>
+    <td><h3>Email:  <input type="email" name="email" placeholder="{{user.email}}" [(ngModel)]="email" > </h3></td>
+    <td><h3>Phone Number: <input type="number" name="phoneno" placeholder="{{user.phoneno}}" [(ngModel)]="phoneno" > </h3></td>
   </tr>
   <tr>
-    <td><h5>User name: {{user.username}} </h5></td>
+    <td><h3>User name: {{user.username}} </h3></td>
   </tr>
  
   </table>
