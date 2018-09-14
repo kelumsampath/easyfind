@@ -16,7 +16,7 @@ export class AuthService {
     const formData: FormData = new FormData();
   formData.append('profpic', user.fileToUpload,user.fileToUpload.name);
   formData.append('fullname',user.fullname);
-  formData.append('username',user.username);
+  formData.append('lastname',user.lastname);
   formData.append('email',user.email);
   formData.append('phoneno',user.phoneno);
   return this.http.post("http://localhost:3000/user/register", formData).map(res=>res.json()); 

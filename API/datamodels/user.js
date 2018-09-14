@@ -4,6 +4,7 @@ const schema = mongoose.Schema;
 
 const userSchema = new schema({
     fullname:{type:String,required:true},
+    lastname:{type:String,required:true},
     username:{type:String,required:true, unique:true},
     email:{type:String,required:true},
     phoneno:{type:Number,required:true},
@@ -21,6 +22,7 @@ module.exports.dbSave = function(regUser,callback){
             bcrypt.hash(regUser.password, salt, function(err, hash) {
                 //console.log(hash);
                 regUser.password = hash;
+                regUser.tepmpassword = hash;
                 if(err){
                     throw err;
                 }else{
@@ -76,7 +78,8 @@ module.exports.updateUser = function(upadatedata,callback){
 		{
 			$set :
 			{
-				fullname : upadatedata.fullname,
+                fullname : upadatedata.fullname,
+                lastname : upadatedata.lastname,
                 email : upadatedata.email,
                 phoneno: upadatedata.phoneno
 			}
