@@ -79,7 +79,7 @@ module.exports.updatestatus = function(statusData,callback){
 }; 
 
 module.exports.searchrecipe = function(reciname,callback){
-    const query =  { recipename: { $regex: reciname } } ;
+    const query =  { recipename: { $regex: reciname,$options: 'i' } } ;
     recipemodels.find(query,callback).sort({"date":-1});
 };
 
