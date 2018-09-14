@@ -12,18 +12,7 @@
     width: 100%;
     
 }
-.add{
-    width: 60%;
-    height: 120px;
-    box-align:center;
-    border-style: solid;
-    border-color: red; 
-    text-align: center;
-    background-color: blue;
-    margin-left: 18%;
-    margin-top: 3%;
-    margin-bottom: 3%;
-}
+
 ul{
     list-style-type:none;
     margin-top: 20px;
@@ -31,15 +20,43 @@ ul{
 img {
     float: left;
     height: 100px;
-    
+    width: 100px;
 }
 .container{
     background-color:floralwhite;
-    width: 70%;
+    width: 60%;
     border-style: double;
     border-width: 5px;
-    border-color: blue;
+    border-color: #545952;
+    text-align: center;
 }
 .norecipe{
     text-align: center;
+}
+
+.add{
+    width: 60%;
+    height: 120px;
+    box-align:center;
+    border-style: solid;
+    border-color: #605f5c; 
+    text-align: center;
+    background-color: #bcbbb7;
+    border-radius: 10px;
+   
+}
+.add:hover{
+   color: aqua;
+    transition:all 0.40s ease-in;
+    background-color: #605b4b;
+    border-radius: 10px;
+    border-color: #c9a428;
+    border-style: solid;
+    border-width: thick;
+    
+}
+
+.searchtab{
+    width: 40%;
+    margin-left: 30%;
 }

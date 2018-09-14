@@ -13,8 +13,8 @@ export class FoodrecipeComponent implements OnInit {
 
   ngOnInit() {
   }
-  imageSources = ["../../../assets/images/cover.jpg",
-  "http://bestcoverpix.com/wp-content/uploads/2014/01/clear-water-island-Nature-Facebook-covers.jpg",
-  "../../../assets/images/cover.jpg"];
+  imageSources = ["../../../assets/images/ta.jpg",
+  "../../../assets/images/cook1.jpg",
+  "../../../assets/images/2c.jpg"];
 
 }

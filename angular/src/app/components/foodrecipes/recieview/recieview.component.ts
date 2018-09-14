@@ -158,9 +158,11 @@ isadmin(){
 }
 
 accept(){
+  var comment=prompt("Admin comment:","Nice recipe!");
   const statusdata={
     recipename:this.myrecipe.recipename,
-    status:"accepted"
+    status:"accepted",
+    comment:comment
   }
   this.authservice.acceptRecipe(statusdata).subscribe(res=>{
     if(res.state){
@@ -173,9 +175,11 @@ accept(){
 }
 
 pending(){
+  var comment=prompt("Admin comment:","pending for administrator review!");
   const statusdata={
     recipename:this.myrecipe.recipename,
-    status:"pending"
+    status:"pending",
+    comment:comment
   }
   this.authservice.acceptRecipe(statusdata).subscribe(res=>{
     if(res.state){
@@ -188,9 +192,11 @@ pending(){
 }
 
 reject(){
+  var comment=prompt("Admin comment:","Unfitted Content!");
   const statusdata={
     recipename:this.myrecipe.recipename,
-    status:"rejected"
+    status:"rejected",
+    comment:comment
   }
   this.authservice.acceptRecipe(statusdata).subscribe(res=>{
     if(res.state){

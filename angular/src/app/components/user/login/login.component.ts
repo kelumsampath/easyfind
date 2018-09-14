@@ -32,8 +32,8 @@ export class LoginComponent implements OnInit {
       if(res.state){
         this.authservice.storeData(res.token,res.user);
         this.ngFlashMessageService.showFlashMessage({messages: ["You are loggedin!"],dismissible: true,timeout: 4000,type: 'success'});
-        //this.router.navigate(['../']);
-        this._location.back();
+        this.router.navigate(['/..']);
+        //this._location.back();
       }
         else{
         this.ngFlashMessageService.showFlashMessage({messages: [res.msg],dismissible: false,timeout: 4000,type: 'danger'});

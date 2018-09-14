@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container login">
 <form class="form" #form=ngForm (submit)="loginUser()">
     <fieldset>
-      <legend>LogIn</legend>
+      <legend><h2>LogIn</h2></legend>
         <div class="form-group">
             <label for="exampleInputPassword1">Username</label>
             <input type="text" class="form-control" id="userename" placeholder="Username" name="username" [(ngModel)]="username" required>
@@ -14,6 +14,6 @@
 
       <button type="submit" class="btn btn-success btn-lg" [disabled]="!form.valid">LogIn</button>
     </fieldset>
-  </form>
+  </form><br>
   <div id="fogot"><a (click)="fogotpassword()">fogot password? click here</a></div>
 </div>

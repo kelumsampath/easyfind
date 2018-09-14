@@ -1,7 +1,7 @@
 <div class="outerbox">
   <div class="searchform">
       <form class="form" #form=ngForm (submit)="searchrecipe()">
-        <div class="form-group">
+        <div class="form-group searchtab">
             <input type="text" class="form-control" id="search" placeholder="Recipe name" name="search" [(ngModel)]="search" required ><br>
             <button type="submit" class="btn btn-success btn-lg" [disabled]="!form.valid">Search</button>
           </div>
